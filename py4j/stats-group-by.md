@@ -14,21 +14,9 @@ params = {
             "task": "transforming",
             "action": "group_by",
             "kwargs": {
-                "by": ["job", "marital"],
-                "operations": {
-                    "age": [
-                        {
-                            "func": "min",
-                            "alias": "age_min",
-                            "args": [],
-                        },
-                        {"func": "max", "alias": "age_max", "args": []},
-                        {"func": "std", "alias": "age_std", "args": []},
-                        {"func": "cvar", "alias": "age_cvar", "args": []},
-                        {"func": "confidence_interval", "alias": "age_ci", "args": []},
-                    ],
-                    "loan": [{"func": "frequency", "alias": "loan_freq", "args": []}],
-                },
+                "column": "color",
+				"alias": {"val": "color_val", "req": "color_fre", "rel": "color_rel"},
+				"by": "model",
             },
         }
     ],
