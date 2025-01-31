@@ -14,9 +14,31 @@ params = {
             "task": "transforming",
             "action": "group_by",
             "kwargs": {
-                "column": "color",
-				"alias": {"val": "color_val", "req": "color_fre", "rel": "color_rel"},
-				"by": "model",
+				"by": [
+				  "text",
+				  "cat"
+				],
+				"operations": {
+				  "num": [
+					{
+					  "func": "sum",
+					  "alias": "num_total",
+					  "args": []
+					},
+					{
+					  "func": "mean",
+					  "alias": "num_avg",
+					  "args": []
+					}
+				  ],
+				  "count": [
+					{
+					  "func": "max",
+					  "alias": "count_max",
+					  "args": []
+					}
+				  ]
+				}
             },
         }
     ],
@@ -25,27 +47,110 @@ params = {
 
 Kết quả output có dạng như sau:
 
-| job             | marital   | age_min | age_max | age_std   | age_cvar  | age_ci              | loan_freq                              |
-|------------------|-----------|---------|---------|-----------|-----------|---------------------|----------------------------------------|
-| retired         | single    | 24      | 86      | 12.305292 | 0.223657  | -55.54014:165.57718 | [[{'val': 'no', 'freq': 89, 'rel_freq': 82.41}... |
-| entrepreneur    | single    | 21      | 58      | 7.578248  | 0.214105  | -32.6929:103.48282  | [[{'val': 'yes', 'freq': 51, 'rel_freq': 21.43}... |
-| admin.          | divorced  | 26      | 66      | 8.451030  | 0.196183  | -32.85216:119.00683 | [[{'val': 'no', 'freq': 582, 'rel_freq': 77.6}... |
-| services        | single    | 20      | 60      | 7.057107  | 0.214715  | -30.53831:96.27287  | [[{'val': 'no', 'freq': 993, 'rel_freq': 82.89}... |
-| entrepreneur    | divorced  | 29      | 61      | 8.033614  | 0.175453  | -26.39145:117.96686 | [[{'val': 'no', 'freq': 134, 'rel_freq': 74.86}... |
-| admin.          | single    | 20      | 66      | 7.622093  | 0.222882  | -34.28387:102.67971 | [[{'val': 'no', 'freq': 1443, 'rel_freq': 83.5}... |
-| admin.          | married   | 22      | 75      | 9.261378  | 0.223153  | -41.70776:124.71259 | [[{'val': 'no', 'freq': 2155, 'rel_freq': 80.0}... |
-| services        | divorced  | 25      | 60      | 8.411953  | 0.195635  | -32.58022:118.57657 | [[{'val': 'no', 'freq': 436, 'rel_freq': 79.42}... |
-| unemployed      | married   | 21      | 65      | 9.269511  | 0.213371  | -39.84002:126.72648 | [[{'val': 'no', 'freq': 652, 'rel_freq': 89.19}... |
-| self-employed   | single    | 22      | 60      | 7.060741  | 0.210304  | -29.86425:97.01223  | [[{'val': 'no', 'freq': 393, 'rel_freq': 88.12}... |
-| ...             | ...       | ...     | ...     | ...       | ...       | ...                 | ...                                    |
+
+| text | cat | num_total | num_avg | count_max |
+|------|-----|-----------|---------|-----------|
+| B    | B   | 1         | 1.0     | 4         |
+| B    | A   | 2         | 2.0     | 6         |
+| A    | A   | 3         | 3.0     | 4         |
 
 
 
-**Giải thích kết quả:**
+**Giải thích các tham số:**
 
-Group by hỗ trợ tất cả các hàm đang có trong toán và arrow. Ngoài ra, một số hàm mới được hỗ trợ bao gồm:
+- *by*: List of Strings. Danh sách các cột cần group theo nhóm.
+- *operations*" List of HashMap, each key is the column name and value has the form as a list of hashmaps {"func": ten_ham, "alias": new_name, "args": []}. 
 
-iqr_mask; iqr_outlier; z_score; z_score_mask; z_score_outlier; confidence_interval; range; cvar; pearson_index; frequency;
+Group by hỗ trợ tất cả các hàm sau:
+
+| func | args |
+|------|------|
+| abs | [] |
+| arccos | [] |
+| arccosh | [] |
+| arcsin | [] |
+| arcsinh | [] |
+| arctan | [] |
+| arctanh | [] |
+| arg_unique | [] |
+| cbrt | [] |
+| cos | [] |
+| cosh | [] |
+| cot | [] |
+| cum_count | [] |
+| cum_max | [] |
+| cum_min | [] |
+| cum_prod | [] |
+| cum_sum | [] |
+| ewm_mean | [com, span, half_life] |
+| ewm_mean_by | [by, half_life] |
+| ewm_std | [com, span, half_life] |
+| ewm_var | [com, span, half_life] |
+| hist | [bins, bin_count] |
+| kurtosis | [] |
+| log | [base] |
+| log10 | [] |
+| log1p | [] |
+| mode | [] |
+| n_unique | [] |
+| pct_change | [n] |
+| peak_max | [] |
+| peak_min | [] |
+| rank | [method, descending, seed] |
+| rolling_map | [function, window_size] |
+| rolling_max | [window_size, weights] |
+| rolling_max_by | [by, window_size] |
+| rolling_mean | [window_size, weights] |
+| rolling_mean_by | [by, window_size] |
+| rolling_median | [window_size, weights] |
+| rolling_median_by | [by, window_size] |
+| rolling_min | [window_size, weights] |
+| rolling_min_by | [by, window_size] |
+| rolling_quantile | [quantile] |
+| rolling_quantile_by | [by, window_size] |
+| rolling_skew | [window_size, bias] |
+| rolling_std | [window_size, weights] |
+| rolling_std_by | [by, window_size] |
+| rolling_sum | [window_size, weights] |
+| rolling_sum_by | [by, window_size] |
+| rolling_var | [window_size, weights] |
+| rolling_var_by | [by, window_size] |
+| search_sorted | [element, side] |
+| sin | [] |
+| sinh | [] |
+| skew | [] |
+| sqrt | [] |
+| tan | [] |
+| tanh | [] |
+| unique | [] |
+| unique_counts | [] |
+| len | [] |
+| max | [] |
+| mean | [] |
+| median | [] |
+| min | [] |
+| n_unique | [] |
+| quantile | [quantile, interpolation] |
+| std | [] |
+| sum | [] |
+| var | [] |
+
+
+Các hàm bổ sung được viết thêm:
+
+
+| func | args |
+|------|------|
+|iqr_mask| {whisker: 1.5}|
+|z_score_mask| {threshold: 3.0}|
+|confidence_interval| {confidence_level: 0.95}|
+| range | [] |
+| cvar | [] |
+| pearson_index | [] |
+
+
+
+
 
 
 
