@@ -98,9 +98,9 @@ Group by hỗ trợ tất cả các hàm sau:
 | peak_min | [] |
 | rank | [method, descending, seed] |
 | rolling_map | [function, window_size] |
-| rolling_max | [window_size, weights] |
+| rolling_max | [window_size, weights] | -> Keep the original type
 | rolling_max_by | [by, window_size] |
-| rolling_mean | [window_size, weights] |
+| rolling_mean | [window_size, weights] | -> Return double
 | rolling_mean_by | [by, window_size] |
 | rolling_median | [window_size, weights] |
 | rolling_median_by | [by, window_size] |
@@ -144,9 +144,14 @@ Các hàm bổ sung được viết thêm:
 |iqr_mask| {whisker: 1.5}|
 |z_score_mask| {threshold: 3.0}|
 |confidence_interval| {confidence_level: 0.95}|
-| range | [] |
-| cvar | [] |
-| pearson_index | [] |
+| range | [] | ->? Float (double)
+| cvar | [] | ->? Float (double)
+| pearson_index | [] | ->? Float type (double)
+
+Tách các hàm cho visualize data: pearson_index, cvar, std, mean, ... lên graph
+Phan chia thanh 2 nhom:
+- More technical
+- Simple
 
 
 

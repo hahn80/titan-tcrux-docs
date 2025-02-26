@@ -71,7 +71,9 @@ params = {
             "task": "statistics",
             "action": "best_probability",
             "kwargs": {
-                "operations": {"col_1": {"direction": "top", "weight": 1.0}, "col_2": {"direction": "bottom", "weight": 1.1}}
+                "operations": {
+					"thu_nhap": {"direction": "top", "weight": 2.0},
+					"tuoi": {"direction": "bottom", "weight": 1.0}}
 				"percent": 10,
 				// "k": 2
             },
