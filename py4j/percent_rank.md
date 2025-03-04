@@ -37,7 +37,10 @@ params = {
             "task": "transforming",
             "action": "row_percent_rank",
             "kwargs": {
-                "columns": ["ten_col1", "ten_col2"],
+                "operations": {
+					"num": {"alias": "num_rank"},
+					"count": {"alias": "count_rank"},
+            	},
 				"skip_negative": true,
 				"method": "average",
             },
@@ -47,6 +50,6 @@ params = {
 ```
 
 Giải thích tham số:
-- `columns`: Array of String -> key for multiple input column names
+- `operations`: Hashmap of key, value: key=column name; value is a hashmap of alias name.
 - `skip_negative`: boolean: Set TRUE nếu không tính các giá trị âm hoặc =0 vào quá trình ranking. Chương trình sẽ tự động loại các giá trị âm trước khi tính.
 - `method`: String: phương pháp để tính ranking (average, dense).

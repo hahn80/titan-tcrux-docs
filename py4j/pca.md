@@ -16,6 +16,7 @@ params = {
             "kwargs": {
                 "columns": ["age", "balance", "duration", "pdays"],
                 "top_k": 2,
+				"pc_labels": ["score1", "score2"]
             },
         }
     ],
@@ -24,7 +25,7 @@ params = {
 
 Kết quả output có dạng như sau:
 
-| pc_1         | pc_2         |
+| score1         | score2         |
 |--------------|--------------|
 | -190.479678  | -2150.782788 |
 | -152.162820  | -34.267486   |
