@@ -18,6 +18,7 @@ params = {
             "kwargs": {
                 "columns": None,
                 "target": None,
+				"feature_name": "features"
             },
         }
     ],
@@ -26,7 +27,7 @@ params = {
 
 Kết quả output có dạng như sau:
 
-|        | age       | balance   | day       | duration  | campaign  | pdays     | previous  | year      |
+| features | age       | balance   | day       | duration  | campaign  | pdays     | previous  | year      |
 |--------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
 | age    | 1.000000  | 0.097783  | -0.009120 | -0.004648 | 0.004760  | -0.023758 | 0.001288  | -0.008022 |
 | balance| 0.097783  | 1.000000  | 0.004503  | 0.021560  | -0.014578 | 0.003435  | 0.016674  | 0.031499  |
@@ -42,6 +43,6 @@ Kết quả output có dạng như sau:
 
 **Giải thích kết quả:**
 
-- Khi dữ liệu trả về, cột tên các columns không có, nhưng mục đích ở đây là để hiểu được ở vị trí vô (i,j) là mức độ tương quan (có mối liên hệ) giữa column[i] và column[j].
+- Khi dữ liệu trả về, cột tên các columns là `feature_name`, mục đích ở đây là để hiểu được ở vị trí vô (i,j) là mức độ tương quan (có mối liên hệ) giữa column[i] và column[j].
 - Khi columns=None, nó sẽ tự tính toán tất cả các cột mà nó có thể tính được trong dữ liệu.
 - Nếu cột target được đưa vào, nó chỉ tính hệ số tương quan của các cột đã cho và cột target.
