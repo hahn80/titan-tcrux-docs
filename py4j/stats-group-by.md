@@ -67,7 +67,8 @@ Tham số mẫu:
           "args": []
         }
       ]
-    }
+    },
+	  "explode": true
   }
 }
 ```
