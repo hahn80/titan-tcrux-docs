@@ -3,6 +3,77 @@
 
 Group và tính toán thống kê sẽ tiết kiệm được thời gian và quá trình chạy.
 
+1. Một ví dụ phức tạp về group by:
+
+Tham số mẫu:
+
+```json
+{
+  "task": "transforming",
+  "action": "group_by",
+  "kwargs": {
+    "by": [
+      "text",
+      "cat"
+    ],
+    "operations": {
+      "num": [
+        {
+          "func": "sum",
+          "alias": "num_total",
+          "args": []
+        },
+        {
+          "func": "mean",
+          "alias": "num_avg",
+          "args": []
+        },
+        {
+          "func": "ci_lower",
+          "alias": "num_ci_lower",
+          "args": [
+            0.95
+          ]
+        },
+        {
+          "func": "ci_upper",
+          "alias": "num_ci_upper",
+          "args": [
+            0.95
+          ]
+        }
+      ],
+      "count": [
+        {
+          "func": "max",
+          "alias": "count_max",
+          "args": []
+        }
+      ],
+      "name": [
+        {
+          "func": "freq_value",
+          "alias": "bool_freq_val",
+          "args": []
+        },
+        {
+          "func": "freq_count",
+          "alias": "bool_freq_count",
+          "args": []
+        },
+        {
+          "func": "freq_percent",
+          "alias": "bool_freq_pct",
+          "args": []
+        }
+      ]
+    }
+  }
+}
+```
+
+2. Có thể dùng các hàm mở rộng khác có trong Polars.
+
 Tham số để gọi service:
 
 ```json
