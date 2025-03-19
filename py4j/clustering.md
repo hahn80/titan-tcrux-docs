@@ -24,11 +24,26 @@ params = {
                 "keys": ["key"],
                 "exclude": ["year", "date"],
                 "percent": 10,
+				"cluster_alias": "cluster",
+    			"distance_alias": "distance",
             },
         },
     ],
 }
 ```
+
+**Giải thích các tham số:**
+
+- *action*: `purify` để lọc khách hàng theo điều kiện column `y` == "yes".
+- *conditions*" a hashmap with key is the column name and value is a list of hashmaps {"relation": one of the relations, "value": value to compare to}. 
+- *action*: `get_top_clients` to extract 10% "best" clients.
+- *columns*: (List[String] or Null) if null the take all columns except the keys.
+- *n_clusters*: Int : the number of clusters; if n_clusters=0, then it will determine the number of groups automatically.
+- *keys*: Optional -> List[String] or Null : list of columns that are used as keys.
+- *exclude*: List[String] : the list of columns that exlude from doing calculations.
+- *percent*: Percentage to get the best clients. Float number from 1 to 100.
+- *cluster_alias*: String
+- *distance_alias*: String
 
 input data:
 
@@ -54,16 +69,7 @@ Kết quả output có dạng như sau:
 
 
 
-**Giải thích các tham số:**
 
-- *action*: `purify` để lọc khách hàng theo điều kiện column `y` == "yes".
-- *conditions*" a hashmap with key is the column name and value is a list of hashmaps {"relation": one of the relations, "value": value to compare to}. 
-- *action*: `get_top_clients` to extract 10% "best" clients.
-- *columns*: (List[String] or Null) if null the take all columns except the keys.
-- *n_clusters*: Int : the number of clusters; if n_clusters=0, then it will determine the number of groups automatically.
-- *keys*: List[String] : list of columns that are used as keys.
-- *exclude*: List[String] : the list of columns that exlude from doing calculations.
-- *percent*: Percentage to get the best clients. Float number from 1 to 100.
 
 
 

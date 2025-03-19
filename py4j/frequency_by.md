@@ -15,7 +15,7 @@ params = {
             "action": "frequency_by",
 			"kwargs": {
 					"column": "color",
-					"alias": {"val": "color_val", "req": "color_fre", "rel": "color_rel"},
+					"alias": {"val": "color_val", "req": "color_freq", "rel": "color_rel"},
 					"by": "model",
 			},
     }
