@@ -145,7 +145,7 @@ params = {
             "kwargs": {
                 "columns": ["age", "balance", "duration"],
                 "target": "pdays",
-				"method": "covariance_inverse",
+				"mode": "covariance_inverse",
 				"alpha": 1.0
             },
         }
@@ -155,5 +155,5 @@ params = {
 
 Chú thích tham số:
 
-- *method*: String = "covariance_inverse"
+- *mode*: String = "covariance_inverse"
 - *alpha*: Tham số là regularization có giá trị float từ nhỏ 0.0 đến lớn 100. Default value = 0.01. Nếu giá trị alpha = 0 thì nó trở thành phân tích covariance cho mô hình hồi qui thông thường.
