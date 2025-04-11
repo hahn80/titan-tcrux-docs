@@ -47,6 +47,15 @@ For example, impact_percentage: [5, 20], that means we split the dominance level
 
 **Output result:** The output will be an arrow file.
 
+| __measures__          | X1      | X2       | X3      | X4      |
+|-----------------------|---------|----------|---------|---------|
+| Importance Percentage | 38.73   | 9.76     | 5.04    | 46.47   |
+| Impact Coefficient    | 3.49412 | -1.97553 | 1.19209 | 4.07275 |
+| Lower Coefficient     | 3.43132 | -2.03973 | 1.12948 | 4.00802 |
+| Upper Coefficient     | 3.55692 | -1.91132 | 1.2547  | 4.13747 |
+| Ranking               | 1.0     | -1.0     | 1.0     | 2.0     |
+
+
 
 ## 2. Level a: Dominance with **shifts**
 
