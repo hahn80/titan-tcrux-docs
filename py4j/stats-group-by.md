@@ -204,6 +204,8 @@ Here are the Polars functions along with their arguments:
 | range | [] | ->? Float (double)
 | cvar | [] | ->? Float (double)
 | pearson_index | [] | ->? Float type (double)
+| first_not_null | [] | ->? Same type or null
+| last_not_null | [] | ->? Same type or null
 
 Tách các hàm cho visualize data: pearson_index, cvar, std, mean, ... lên graph
 Phan chia thanh 2 nhom:
