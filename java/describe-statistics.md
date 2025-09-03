@@ -1,4 +1,4 @@
-# Compute describe statistics
+# Describe statistics
 
 Trước khi nghiên cứu, phân tích, hoặc hiểu về dữ liệu, chúng ta cần biết một số thông tin về dữ liệu. Công cụ cở bản nhất là xác định thống kê mô tả.
 
