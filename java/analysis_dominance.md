@@ -71,6 +71,12 @@ jobs = [
 ]
 ```
 
+Giải thích tham số:
+
+- *impact_percentage*: VD: 5, 40: Nghĩa là chia `Importance Percentage` thành các khoảng 0, <5% là tác động yếu nên bỏ qua. Từ 5% đến <40% là tác động đáng kể, và từ 40% trở lên 100% là cao.
+
+- *confidence_level*: Mức độ tin cậy để tính hệ số tác động trên mỗi biến. Chú ý những biến nào tác động dưới 5% như ở trên sẽ bị loại bỏ, chỉ xét các biến có tác động cao hơn 5% cho quá trình xác định hệ số `Impact Coefficient`, `Lower Coefficient` và `Upper Coefficient`.
+
 Output results:
 
 | __measures__ | CRIM | ZN | INDUS | CHAS | NOX | RM | AGE | DIS | RAD | TAX | PTRATIO | B | LSTAT |
