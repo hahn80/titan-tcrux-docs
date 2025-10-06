@@ -93,4 +93,10 @@ Output results:
 Giải thích ý nghĩa:
 
 (1) Importance Percentage: Mức ảnh hưởng của biến lên biến mục tiêu.
-(2) Impact Coefficent: Hệ số tác động của biến lên biến mục tiêu. None có nghĩa là khi giữa nguyên các biến khác nếu tăng biến này lên 1 đơn vị thì biến mục tiêu cơ bản không thay đổi. 
+
+(2) Impact Coefficent: Hệ số tác động của biến lên biến mục tiêu. None có nghĩa là khi giữ nguyên các biến khác nếu tăng biến này lên 1 đơn vị thì biến mục tiêu cơ bản không thay đổi, hệ số dương thể hiện tác động tăng và hệ số âm thể hiện tác động ngược. VD: Khi các biến khác không đổi, RM tăng lên 1 đơn vị thì biến mục tiêu MEDV tăng 4.22 đơn vị; khi các biến khác không đổi nếu PTRATIO tăng lên 1 đơn vị thì biến mục tiêu MEDV giảm 0.97 đơn vị.
+
+(3) Importance Percentage: Thể hiện mức độ ảnh hưởng của mỗi biến tổng thể lên mô hình làm ảnh hưởng đến biến mục tiêu. VD: Biến RM đóng góp 30.69% - theo chiều thuận (vì Impact Coefficient tương ứng dương) lên biến mục tiêu trong mô hình, Biến PTRATIO đóng góp 10.91% - theo chiều nghịch (vì Impact Coefficient tương ứng âm) lên biến mục tiêu trong mô hình.
+
+(4) Lower Coefficient - Upper Coefficient: Thể hiện khoảng biến động của biến mục tiêu với độ chính xác 75% khi giữ nguyên các biến khác và chỉ biến đó tăng lên 1 đơn vị. VD: Nếu giữ nguyên các biến khác mà tăng biến RM lên 1 đơn vị thì biến mục tiêu PTATOO tăng tối thiểu 3.74 đơn vị và tăng tối đa 4.71 đơn vị; Nếu giữ nguyên các biến khác mà tăng biến PTRATIO lên 1 đơn vị thì biến mục tiêu PTATOO giảm tối thiểu 0.84 đơn vị và giảm tối đa 1.11 đơn vị
+
