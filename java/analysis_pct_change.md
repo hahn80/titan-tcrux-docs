@@ -96,10 +96,10 @@ Kết quả output:
 | 2024-10-24 | 186.38 | 21647400 | 185.25 | 187.11 | 183.86 | 0.01 | -0.32 |
 
 
-Giải thích kết quả:
+Giải thích kết quả: (trong hàng thứ 2)
 
-- Nếu pct_change kết quả là: 0.01, nghĩa là giá tăng 1%.
-- Nếu pct_change là -0.03, nghĩa là giá giảm 3%.
+- Nếu pct_change kết quả là  0.01: nghĩa là ngày 2024-10-08 Close tăng tăng 1% so với ngày 2024-10-07.
+- Nếu pct_change là -0.38: nghĩa là 2024-10-08 Volume giảm 38% so với ngày 2024-10-07.
 
 
 ## Percent Change with group_by
