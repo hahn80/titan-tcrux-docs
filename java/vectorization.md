@@ -20,7 +20,7 @@ jobs = [
       "operations": {
         "hanh_kiem": [
           {
-            "alisa": "hanh_kiem_encode"
+            "alias": "hanh_kiem_encode"
           }
         ]
       }
@@ -40,7 +40,7 @@ jobs = [
 
 Output results:
 
-| ho_va_ten | ngay_sinh | dan_toc | hoan_canh | diem_toan | gv_toan | diem_ly | gv_ly | diem_hoa | gv_hoa | diem_van | gv_van | diem_su | gv_su | diem_dia | gv_dia | diem_sinh | gv_sinh | diem_tk | hoc_luc | hanh_kiem | vang_co_phep | vang_ko_phep | danh_hieu | xep_hang | tinh_trang | tinh | xa | truong | nam_hoc | khoi_lop | gvcn |
+| ho_va_ten | ngay_sinh | dan_toc | hoan_canh | diem_toan | gv_toan | diem_ly | gv_ly | diem_hoa | gv_hoa | diem_van | gv_van | diem_su | gv_su | diem_dia | gv_dia | diem_sinh | gv_sinh | diem_tk | hoc_luc | hanh_kiem_encode | vang_co_phep | vang_ko_phep | danh_hieu | xep_hang | tinh_trang | tinh | xa | truong | nam_hoc | khoi_lop | gvcn |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Mẫn Hướng Xuân | 2010-07-09 | Ba Na | Trung Bình | 7.30 | Trang Gia Khiếu | 8.50 | Hùng Giao Thương | 9.80 | Tào Chấn Khoát | 5.30 | Khu Cát Thương | 9.00 | Ong Tiên Khê | 1.70 | Chế Phục Thạch | 4.80 | Âu Ánh Quân | 6.60 | Đạt | 0 | 2 | 2 | NA | 91 | Lên Lớp | An Giang | An Biên | THPT Phan Châu Trinh | 2023-2024 | 10 | Hồ An Hoàn |
 | Điền Quốc Phong | 2009-10-06 | Mường | Giàu | 7.60 | Trang Gia Khiếu | 8.80 | Hùng Giao Thương | 0.20 | Tào Chấn Khoát | 7.40 | Khu Cát Thương | 1.70 | Ong Tiên Khê | 1.00 | Chế Phục Thạch | 5.60 | Âu Ánh Quân | 4.60 | Chưa đạt | 0 | 1 | 1 | NA | 22 | Lưu ban | An Giang | An Biên | THPT Phan Châu Trinh | 2023-2024 | 10 | Hồ An Hoàn |
