@@ -88,4 +88,9 @@ Output results:
 | Importance Percentage | 2.26 | 2.50 | 2.35 | 2.73 | 2.80 | 30.69 | 1.66 | 5.91 | 1.63 | 2.49 | 10.91 | 2.36 | 31.72 |
 | Impact Coefficient | None | None | None | None | None | 4.22 | None | -0.55 | None | None | -0.97 | None | -0.67 |
 | Lower Coefficient | None | None | None | None | None | 3.74 | None | -0.70 | None | None | -1.11 | None | -0.72 |
-| Upper Coefficient | None | None | None | None | None | 4.71 | None | -0.41 | None | None | -0.84 | None | -0.61 |
+| Upper Coefficient | None | None | None | None | None | 4.71 | None | -0.41 | None | None | -0.84 | None | -0.61 |**
+
+Giải thích ý nghĩa:
+
+(1) Importance Percentage: Mức ảnh hưởng của biến lên biến mục tiêu.
+(2) Impact Coefficent: Hệ số tác động của biến lên biến mục tiêu. None có nghĩa là khi giữa nguyên các biến khác nếu tăng biến này lên 1 đơn vị thì biến mục tiêu cơ bản không thay đổi. 
