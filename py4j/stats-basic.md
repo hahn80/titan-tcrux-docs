@@ -68,6 +68,7 @@ Kết quả output có dạng như sau:
 | pearson_index  | 0.547016  | 0.900830      | -0.069780 | 0.910539     | 0.739673    | 1.234346    | 0.755813    | 2.214406    |
 
 Giải thích ý nghĩa:
+
 (1) Mean: Giá trị trung bình.
 
 (2) std (Standard Deviation): Là đại lượng dùng để đo độ phân tán của dữ liệu (quanh giá trị trung bình) đối với hai trường dữ liệu CÙNG ĐƠN VỊ ĐO. Nếu hai trường dữ liệu cùng đơn vị đo, nếu dữ liệu nào có std lớn thì độ phân tán của nó lớn và ngược lại. std còn dùng để tính toán các đại lượng khác trong thống kê như confidence interval,...
