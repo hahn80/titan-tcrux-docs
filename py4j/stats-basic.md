@@ -68,3 +68,11 @@ Kết quả output có dạng như sau:
 | pearson_index  | 0.547016  | 0.900830      | -0.069780 | 0.910539     | 0.739673    | 1.234346    | 0.755813    | 2.214406    |
 
 Giải thích ý nghĩa:
+(1) Mean: Giá trị trung bình.
+(2) std (Standard Deviation): Là đại lượng dùng để đo độ phân tán của dữ liệu (quanh giá trị trung bình) đối với hai trường dữ liệu CÙNG ĐƠN VỊ ĐO. Nếu hai trường dữ liệu cùng đơn vị đo, nếu dữ liệu nào có std lớn thì độ phân tán của nó lớn và ngược lại. std còn dùng để tính toán các đại lượng khác trong thống kê như confidence interval,...
+(3) cvar (Coefficient variation - Hệ số phương sai): cvar dùng để xác định sự phân tán của dữ liệu khi không quan tâm đến đơn vị đo. Với hai trường dữ liệu có các đơn vị đo khác nhau thì dùng cvar để so sánh độ phân tán của chúng, trường dữ liệu nào có cvar lớn hơn thì độ phân tán nó lớn hơn và ngược lại
+(4) Min: Là giá trị nhỏ nhất của dữ liệu trong trường đó.
+(5) Max: Giá trị lớn nhất của dữ liệu trong trường đó.
+(6) skew: Đo độ lệch trong phân bố của dữ liệu. Nếu skew = 0 thì dữ liệu cân đối (mean = mode = median), Skew > 0 thì mean lệch về bên phải của dữ liệu (chiều cao của dữ liệu lệch về bên trái) và ngược lại.
+<img width="330" height="450" alt="image" src="https://github.com/user-attachments/assets/dddd15bd-bfff-4a36-a160-0781cbc14d35" />
+
