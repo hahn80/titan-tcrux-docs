@@ -80,5 +80,8 @@ Giải thích ý nghĩa:
 (5) Max: Giá trị lớn nhất của dữ liệu trong trường đó.
 
 (6) skew: Đo độ lệch trong phân bố của dữ liệu. Nếu skew = 0 thì dữ liệu cân đối (mean = mode = median), Skew > 0 thì mean lệch về bên phải của dữ liệu (chiều cao của dữ liệu lệch về bên trái) và ngược lại.
+
+
 <img width="330" height="450" alt="image" src="https://github.com/user-attachments/assets/dddd15bd-bfff-4a36-a160-0781cbc14d35" />
 
+(7) Pearson_index: Đo độ lệch của dữ liệu quanh giá trị trung bình. Trung trường hợp -1 < pearson_index < 1 thì tạm xem dữ liệu có độ lệch ít.
