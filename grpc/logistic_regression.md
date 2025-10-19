@@ -39,7 +39,7 @@ Tham so de chay chuong trinh:
     }
   },
   {
-    "task": "regression",
+    "task": "grpc",
     "action": "logistic_regression",
     "kwargs": {
       "target_column": "deposit",
@@ -102,7 +102,7 @@ Jobs to run with multitasking
     }
   },
   {
-    "task": "regression",
+    "task": "grpc",
     "action": "predict",
     "kwargs": {
       "model_saved_path": "logistic_model.pkl",

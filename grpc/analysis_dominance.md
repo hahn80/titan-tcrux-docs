@@ -32,7 +32,7 @@ jobs = [
     }
   },
   {
-    "task": "statistics",
+    "task": "grpc",
     "action": "dominance",
     "kwargs": {
       "columns": [
