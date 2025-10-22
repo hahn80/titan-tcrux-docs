@@ -1,5 +1,9 @@
 # Regression
 
+Các dịch vụ này đã thay đổi, cần sử dụng dịch vụ trong gRPC: 
+[https://github.com/hahn80/titan-tcrux-docs/blob/main/grpc/llinear_regression.md](https://github.com/hahn80/titan-tcrux-docs/blob/main/grpc/llinear_regression.md)
+
+
 
 Tính toán chỉ số thống kê hồi qui của mô hình linear regression.
 
@@ -14,7 +18,7 @@ params = {
     "output": "regression.arrow",
     "tasks": [
         {
-            "task": "regression",
+            "task": "grpc",
             "action": "linear_regression",
             "kwargs": {
                 "columns": ["age", "balance", "duration"],
@@ -54,7 +58,7 @@ params = {
     "output": "regression.arrow",
     "tasks": [
         {
-            "task": "regression",
+            "task": "grpc",
             "action": "linear_regression",
             "kwargs": {
                 "columns": ["age", "balance", "duration"],
@@ -82,7 +86,7 @@ params = {
     "output": "regression.arrow",
     "tasks": [
         {
-            "task": "regression",
+            "task": "grpc",
             "action": "linear_regression",
             "kwargs": {
                 "columns": ["age", "balance", "duration"],
@@ -111,7 +115,7 @@ params = {
     "output": "regression.arrow",
     "tasks": [
         {
-            "task": "regression",
+            "task": "grpc",
             "action": "linear_regression",
             "kwargs": {
                 "columns": ["age", "balance", "duration"],
@@ -140,7 +144,7 @@ params = {
     "output": "regression.arrow",
     "tasks": [
         {
-            "task": "regression",
+            "task": "grpc",
             "action": "covariance_analysis",
             "kwargs": {
                 "columns": ["age", "balance", "duration"],

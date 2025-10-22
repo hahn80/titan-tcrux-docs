@@ -13,7 +13,7 @@ params = {
     "output": "calc-stats.arrow",
     "tasks": [
         {
-            "task": "statistics",
+            "task": "grpc",
             "action": "dominance",
             "kwargs": {
                 "columns": [
@@ -67,7 +67,7 @@ params = {
     "output": "calc-stats.arrow",
     "tasks": [
         {
-            "task": "statistics",
+            "task": "grpc",
             "action": "dominance",
             "kwargs": {
                 "columns": [
