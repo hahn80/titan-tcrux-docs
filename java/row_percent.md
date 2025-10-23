@@ -75,4 +75,5 @@ Output data:
 | 120 | 120 | 50.00 | 50.00 |
 
 
+Ý nghĩa: row_pct thể hiện phần trăm chiếm giữ của giá trị này so với tổng các giá trị trong hàng đó.
 
