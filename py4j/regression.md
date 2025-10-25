@@ -42,10 +42,12 @@ Kết quả output có dạng như sau:
 
 **Giải thích kết quả:**
 
-- r2: chỉ số R2 score cho mô hình, gần 1 là tốt nhất, gần 0 là bad.
+- r2: chỉ số R2 score cho mô hình, gần 1 là tốt nhất, gần 0 là bad. r2 đánh giá phần trăm mức độ giải thích của các biến độc lập lên biến mục tiêu theo mô hình. Ở đây r2 = 0.000601 tức theo mô hình các biến độc lập giải thích được 0.0601% biến độc lập. Mô hình này rất tệ. Việc này có nghĩa mô hình này gần như không sử dụng được. Mô hình được sử dụng thường phải có mức r2 lớn hơn hoặc bằng 0.4. Khi r nhỏ hơn 0.4 ta nói mô hình không phù hợp và kết quả hồi quy không có ý nghĩa.
 - mae và mse là sai số của mô hình (càng nhỏ càng tốt)
-- feature_names: List các cột được đưa vào regression (chương trình tự động thêm hệ số const). Trong bảng trên ta có thể tính:
+- feature_names: List các cột được đưa vào regression (chương trình tự động thêm hệ số const).
+- coefficients: Xác định hệ số của các biến độc lập khi biến mục tiêu tính theo nó, cụ thể:
 target(pdays) = -0.229497 * age + 0.000193 * balance -0.000701 * duration + 49.511376
+  Điều này cho phép chúng ta ứng dụng mô hình để dự đoán kết quả bằng cách cho các biến độc lập các giá trị cụ thể và dự báo kết quả trong của biến mục tiêu.
 - p_values: dùng để kiểm định mô hình linear regression.
 - lower_bounds và upper_bounds là khoảng tin cậy của hệ số regression.
 
