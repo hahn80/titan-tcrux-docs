@@ -50,7 +50,7 @@ target(pdays) = -0.229497 * age + 0.000193 * balance -0.000701 * duration + 49.5
   Điều này cho phép chúng ta ứng dụng mô hình để dự đoán kết quả bằng cách cho các biến độc lập các giá trị cụ thể và dự báo kết quả trong của biến mục tiêu.
   Coefficients còn dùng để dự đoán ý nghĩa là khi giữ nguyên các biến độc lập khác mà tăng biến độc lập này lên một đơn vị thì biến mục tiêu sẽ thay đổi một đại lượng tương ứng.
 - p_values: dùng để kiểm định mô hình linear regression, để nói lên là biến độc lập tương ứng có thực sự tác động lên biến mục tiêu trong mô hình không. p_values nhỏ nói lên rằng biến độc lập tương ứng thực sự tác động lên biến mục tiêu và ngược lại khi p-values lớn thì ý nghĩa là biến độc lập không tác động lên biến mục tiêu. Ngưỡng của việc xác định tác động hay không tác động phụ thuộc vào nhu cầu độ tin cậy của người dùng. Với ngưỡng 0.25 dùng để đo độ tin cậy tương ứng 75%. Tức nếu người dùng cần độ tin cậy đến 75% thì chỉ với những biến độc lập có p-values nhỏ hơn 0.25 mới tham gia tác động đến biến mục tiêu trong mô hình. Đây cũng là công cụ để chúng ta loại các biến không tác động đến biến mục tiêu và chạy lại mô hình với các biến thực sự tác động lên biến mục tiêu. 
-- lower_bounds và upper_bounds là khoảng tin cậy của hệ số regression.
+- lower_bounds và upper_bounds là khoảng tin cậy của hệ số regression: Với mô hình này chọn độ chính xác 95% ("confidence_level": 0.95,) thì hai cận này có ý nghĩa: Nếu giữa nguyên các biến còn lại và tăng biến độc lập tương ứng lên một đơn vị thì biến mục tiêu sẽ biến động trong khoảng này, dấu "-" chỉ giảm và dâu "+" chỉ tăng.
 
 
 2. Mô hình LASSO:
