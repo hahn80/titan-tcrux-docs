@@ -94,3 +94,10 @@ Output result:
 | 25 | 27 | 8.00 | 0.80 | 0.25 |
 | 5 | 12 | 4.00 | 0.40 | -0.80 |
 | 120 | 120 | 10.00 | 1.00 | 23.00 |
+
+
+Ý nghĩa:
+
+(1) Rank: Xác định vị trí sắp thứ tự từ bé đến lớn của dữ liệu.
+
+(2) ptc_rank: Thể hiện vị trí % của dữ liệu. Tức dữ liệu được chia thành 100 phần và sắp xếp từ 0.01 (tương ứng 1%) đến 1.0 (tương ứng 100%) theo thứ tự từ bé đến lớn. VD: -100 có pct_rank = 0.1 tức -100 có vị trí phần trăm là 10%, xếp vào nhóm 10% thấp nhất; 20 có pct_rank = 0.7 tức 20 nằm tóp 70% của các giá trị.
