@@ -39,7 +39,7 @@ Tham so de chay chuong trinh:
     }
   },
   {
-    "task": "grpc",
+    "task": "regression",
     "action": "logistic_regression",
     "kwargs": {
       "target_column": "deposit",
