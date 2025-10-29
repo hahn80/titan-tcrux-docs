@@ -50,6 +50,10 @@ jobs = [
 
 Mục đích: Trong bài toán trên, chúng ta xét tất cả các khả năng phân nhóm theo `job` và `education`. Trong các nhóm này, ta cấn tính toán số lượng (hoặc trung bình, tổng...) theo một biến khác; hoặc chính các biến này.
 
+
+Ý nghĩa: Tính toán giao nhau giữa các nhóm đối tượng trong các trường dữ liệu có nhiều thuộc tính. Chẳng hạn khi chúng ta nói về đối tượng khách hàng được phân theo hai nhóm thuộc tính là Job và Education. Trong Job có nhiều thuộc tính khác nhau và trong Educcation cũng có nhiều thuộc tính khác nhau. VD: 7801 chỉ số lượng khách hàng có Educaion thuộc nhóm tertiary và lĩnh vực Job là management.
+
+
 Giải thích tham số:
 
 - *index*: List of Strings: The values to form the index column.
