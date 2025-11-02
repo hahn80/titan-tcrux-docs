@@ -64,6 +64,7 @@ Explain the parameters:
 - *ts_index*: String: The name of the datetime column, we accept `Date`; `Datetime` or `Timestamp`.
 - *ts_interval*: String: The format could be "2d" or "1mo"... Check the notice below.
 - *operations*: Hashmap<String, Object> The object contains alias, fill_value, and strategy. If the fill_value is not null (say fill_value=10), then we will use this value to replace any null values. If fill_value is null, then we consider the stragety. There are strategies you can use: linear, mean, median, mode, min, max
+- If *operations* is empty, for example `operations={}`, then we just fill the missing dates, and other values are null.
 
 | ts_interval | Meaning      | Example   | Notes                             |
 | ---- | ------------ | --------- | --------------------------------- |
