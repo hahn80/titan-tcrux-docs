@@ -20,6 +20,9 @@ Variables in order:
 - LSTAT    % lower status of the population
 - MEDV     Median value of owner-occupied homes in $1000's
 
+
+## 1. Level a: Dominance without shifts
+
 Jobs to run dominance:
 
 ```json
@@ -100,3 +103,99 @@ Giải thích ý nghĩa:
 
 (4) Lower Coefficient - Upper Coefficient: Thể hiện khoảng biến động của biến mục tiêu với độ chính xác 75% khi giữ nguyên các biến khác và chỉ biến đó tăng lên 1 đơn vị. VD: Nếu giữ nguyên các biến khác mà tăng biến RM lên 1 đơn vị thì biến mục tiêu PTATOO tăng tối thiểu 3.74 đơn vị và tăng tối đa 4.71 đơn vị; Nếu giữ nguyên các biến khác mà tăng biến PTRATIO lên 1 đơn vị thì biến mục tiêu PTATOO giảm tối thiểu 0.84 đơn vị và giảm tối đa 1.11 đơn vị
 
+
+## 2. Level a: Dominance with **shifts**
+
+
+```json
+[
+  {
+    "task": "loading",
+    "action": "load_dataframe",
+    "kwargs": {
+      "input_arrow": "/data/TitanProjects/tcrux/src/tests/resources/boston.arrow"
+    }
+  },
+  {
+    "task": "regression",
+    "action": "dominance",
+    "kwargs": {
+      "columns": [
+        "CRIM",
+        "ZN",
+        "INDUS",
+        "CHAS",
+        "NOX",
+        "RM",
+        "AGE",
+        "DIS",
+        "RAD",
+        "TAX",
+        "PTRATIO",
+        "B",
+        "LSTAT"
+      ],
+      "target": "MEDV",
+      "impact_percentage": [
+        5,
+        40
+      ],
+      "confidence_level": 0.75,
+      "keep_constant": false,
+      "shifts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ]
+    }
+  },
+  {
+    "task": "saving",
+    "action": "write_dataframe",
+    "kwargs": {
+      "output_arrow": "/data/TitanProjects/tcrux/src/tests/resources/output.arrow",
+      "batch_size": 200,
+      "reformat_string": true
+    }
+  }
+]
+```
+
+
+*shifts*: the *shift* units for each columns (integer) and must have same length as *columns*.
+
+For example, if 
+
+"columns": [ "CRIM", "ZN", "INDUS", "CHAS", "NOX", "RM", "AGE", "DIS", "RAD", "TAX", "PTRATIO", "B", "LSTAT" ]
+
+and
+
+"shifts": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 ]
+
+It means: shift CRIM column 1 row forward, ZN 2 rows forward and so on.
+We can also shift backward with negative numbers.
+
+
+
+Output result:
+
+| __measures__ | CRIM | ZN | INDUS | CHAS | NOX | RM | AGE | DIS | RAD | TAX | PTRATIO | B | LSTAT |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Individual Dominance | 0.14 | 0.09 | 0.19 | 0.02 | 0.11 | 0.08 | 0.07 | 0.07 | 0.17 | 0.19 | 0.17 | 0.06 | 0.11 |
+| Partial Dominance | 0.03 | 0.01 | 0.03 | 0.01 | 0.00 | 0.01 | 0.00 | 0.00 | 0.01 | 0.02 | 0.04 | 0.00 | 0.01 |
+| Interactional Dominance | 0.02 | 0.00 | 0.02 | 0.01 | 0.00 | 0.01 | 0.00 | 0.00 | 0.00 | 0.00 | 0.02 | 0.00 | 0.00 |
+| Total Dominance | 0.03 | 0.01 | 0.03 | 0.01 | 0.00 | 0.01 | 0.00 | 0.00 | 0.01 | 0.02 | 0.04 | 0.00 | 0.01 |
+| Importance Percentage | 14.27 | 6.43 | 16.26 | 8.23 | 1.59 | 8.30 | 0.56 | 1.12 | 4.57 | 8.96 | 22.74 | 2.67 | 4.32 |
+| Impact Coefficient | -0.18 | 0.03 | -0.26 | 4.27 | None | 1.20 | None | None | None | -0.00 | -0.82 | None | None |
+| Lower Coefficient | -0.23 | 0.01 | -0.34 | 2.68 | None | 0.58 | None | None | None | -0.01 | -1.04 | None | None |
+| Upper Coefficient | -0.12 | 0.05 | -0.17 | 5.86 | None | 1.82 | None | None | None | 0.00 | -0.60 | None | None |
