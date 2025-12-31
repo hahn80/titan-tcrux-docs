@@ -206,6 +206,9 @@ Here are the Polars functions along with their arguments:
 | pearson_index | [] | ->? Float type (double)
 | first_not_null | [] | ->? Same type or null
 | last_not_null | [] | ->? Same type or null
+| count_all | [] | ->? Int32
+| count_null | [] | ->? Int32
+| count_not_null | [] | ->? Int32
 
 Tách các hàm cho visualize data: pearson_index, cvar, std, mean, ... lên graph
 Phan chia thanh 2 nhom:
