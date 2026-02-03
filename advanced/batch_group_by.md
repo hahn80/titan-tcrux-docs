@@ -20,11 +20,11 @@ Jobs:
 ```json
 [
   {
-    "task": "transforming",
-    "action": "batch_group_by",
+    "task": "batch_processing",
+    "action": "batch_groupby",
     "kwargs": {
-      "input_arrow": "/tmp/tmp5h4ktxvo.arrow",
-      "output_arrow": "/tmp/tmp38g_91hl.arrow",
+      "input_arrow": "/tmp/tmpxa58y0jd.arrow",
+      "output_arrow": "/tmp/tmpc_hqidwy.arrow",
       "operations": {
         "value1": [
           {
@@ -75,7 +75,7 @@ Jobs:
       "by": [
         "group"
       ],
-      "max_rows": 32000 //max row to process in memory
+      "num_partitions": 16
     }
   }
 ]
