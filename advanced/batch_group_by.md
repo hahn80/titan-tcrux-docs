@@ -23,52 +23,85 @@ Jobs:
     "task": "batch_processing",
     "action": "batch_groupby",
     "kwargs": {
-      "input_arrow": "/tmp/tmpxa58y0jd.arrow",
-      "output_arrow": "/tmp/tmpc_hqidwy.arrow",
+      "input_arrow": "/tmp/tmp1xbj03wz.arrow",
+      "output_arrow": "/tmp/tmpz4wrlycz.arrow",
       "operations": {
         "value1": [
           {
             "func": "sum",
-            "alias": "v1_sum",
-            "args": []
+            "alias": "v1_sum"
           },
           {
-            "func": "count",
-            "alias": "v1_count_all",
-            "args": [
-              "all"
-            ]
+            "func": "min",
+            "alias": "v1_min"
           },
           {
-            "func": "count",
-            "alias": "v1_count_not_null",
-            "args": [
-              "not_null"
-            ]
+            "func": "max",
+            "alias": "v1_max"
           },
           {
-            "func": "count",
-            "alias": "v1_count_null",
-            "args": [
-              "null"
-            ]
+            "func": "count_all",
+            "alias": "v1_count_all"
+          },
+          {
+            "func": "count_not_null",
+            "alias": "v1_count_not_null"
+          },
+          {
+            "func": "count_null",
+            "alias": "v1_count_null"
+          },
+          {
+            "func": "count_distinct",
+            "alias": "v1_count_distinct"
           },
           {
             "func": "mean",
-            "alias": "v1_mean",
-            "args": []
+            "alias": "v1_mean"
+          },
+          {
+            "func": "stddev",
+            "alias": "v1_stddev"
+          },
+          {
+            "func": "variance",
+            "alias": "v1_variance"
           }
         ],
         "value2": [
           {
             "func": "first",
-            "alias": "value2_first",
-            "args": []
+            "alias": "value2_first"
+          },
+          {
+            "func": "first_not_null",
+            "alias": "value2_first_not_null"
           },
           {
             "func": "last",
-            "alias": "value2_last",
-            "args": []
+            "alias": "value2_last"
+          },
+          {
+            "func": "last_not_null",
+            "alias": "value2_last_not_null"
+          },
+          {
+            "func": "quantile",
+            "alias": "value2_quantile",
+            "args": {
+              "quantiles": [
+                25,
+                50,
+                75
+              ]
+            }
+          },
+          {
+            "func": "quantile",
+            "alias": "value2_median",
+            "args": {
+              "quantiles": 50
+            }
           }
         ]
       },
@@ -81,30 +114,65 @@ Jobs:
 ]
 ```
 
+Chú ý:
+
+* Nếu chỉ tính median thì dùng tham số:
+```json
+{
+            "func": "quantile",
+            "alias": "value2_median",
+            "args": {
+              "quantiles": 50
+            }
+          }
+```
+* Nếu muốn tính nhiều quantiles thì dùng list các giá trị
+```json
+{
+            "func": "quantile",
+            "alias": "value2_quantile",
+            "args": {
+              "quantiles": [
+                25,
+                50,
+                75
+              ]
+            }
+          }
+```
+
 
 Output result:
 
-| group | v1_sum | v1_count_all | v1_count_not_null | v1_count_null | v1_mean | value2_first | value2_last |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| B | 3 | 2 | 2 | 0 | 1.50 | 1 | 2 |
-| A | 2 | 2 | 1 | 1 | 2.00 | 2 | 2 |
-| C | None | 2 | 0 | 2 | None | None | None |
+| group | v1_sum | v1_min | v1_max | v1_count_all | v1_count_not_null | v1_count_null | v1_count_distinct | value2_first | value2_first_not_null | value2_last | value2_last_not_null | value2_quantile_q25 | value2_quantile_q50 | value2_quantile_q75 | value2_median | v1_stddev | v1_variance | v1_mean |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| C | None | None | None | 2 | 0 | 2 | 0 | None | None | None | None | None | None | None | None | None | None | None |
+| B | 3 | 1 | 2 | 2 | 2 | 0 | 2 | 1 | 1 | 2 | 2 | 1.00 | 1.00 | 1.00 | 1.00 | 0.71 | 0.50 | 1.50 |
+| A | 2 | 2 | 2 | 2 | 1 | 1 | 1 | None | 2 | 2 | 2 | 2.00 | 2.00 | 2.00 | 2.00 | None | None | 2.00 |
 
 
 Support the following functions:
 
+Các hàm này có thể bị crash nếu một group nào đó quá lớn: count_distinct, quantile. Các hàm còn lại sẽ hoạt động trên file lớn tuỳ ý.
+
 ```json
 {
+    "basic_stats",
     "sum",
     "max",
     "min",
-    "count",
+    "count_all",
+    "count_not_null",
+    "count_null",
     "mean",
     "stddev",
     "variance",
     "count_distinct",
     "first",
+    "first_not_null",
     "last",
+    "last_not_null",
+    "quantile",
 }
 ```
 
