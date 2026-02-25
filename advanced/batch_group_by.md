@@ -116,6 +116,8 @@ Jobs:
 
 Chú ý:
 
+* Tham số `num_partitions: 16` dùng để tách các nhóm thành 16 file nhỏ, nếu số lượng group nhiều thì nên tăng số partitions lên. `num_partitions` là một luỹ thừa của 2. VD: 16, 32, 64, 128,...
+
 * Nếu chỉ tính median thì dùng tham số:
 ```json
 {
