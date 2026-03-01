@@ -16,7 +16,7 @@ Jobs:
       "output_arrow": "/tmp/tmpzcdqrfb0/output.arrow",
       "operations": {
         "batch_size": 200,
-        "max_way": 4
+        "m_batches": 4
       }
     }
   }

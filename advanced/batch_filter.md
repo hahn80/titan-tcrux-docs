@@ -16,7 +16,7 @@ Jobs:
       "operations": {
         "where": "\n    Country NOT IN ('Mexico', 'USA')\n    AND Category == 'Beverages'\n    AND Quantity > 10.0\n    AND Email LIKE '%@example.com'\n    AND Cost IS NULL\n    AND OrderDate BETWEEN DATE('2025-01-01', '%Y-%m-%d') AND DATE('2025-06-30', '%Y-%m-%d')\n    AND EventTime >= DATETIME('2025-05-01 00:30:00', '%Y-%m-%d %H:%M:%S')\n    ",
         "batch_size": 250,
-        "max_way": 8,
+        "m_batches": 8, //number of batches to read at once
         "num_workers": 4
       }
     }

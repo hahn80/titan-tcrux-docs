@@ -23,7 +23,7 @@ Jobs:
         ],
         "k": 100,
         "batch_size": 32000,
-        "max_way": 8
+        "m_batches": 8
       }
     }
   }
