@@ -31,6 +31,7 @@ Tham số `where` có kiểu là string tương tự như WHERE trong SQL. Nó h
 - NULL: ColName IS NULL; ColName IS NOT NULL
 - BETWEEN: ColName BETWEEN 'A' AND 'C'; ColName BETWEEN 2.1 AND 10.0;
 - LIKE: ColName LIKE '%@edu.vn';
+- ILIKE: ColName ILIKE '%@edu.vn'; // support case insensitive.
 - Support DATE and DATETIME: DATE(String, format); DATE('2025-01-01', '%Y-%m-%d'); DATETIME(String, format); DATETIME('2025-05-01 00:30:00', '%Y-%m-%d %H:%M:%S')
 - NOT: We can flip the whole statement: NOT (ColName == 10 AND ColName2 == 'a').
 
