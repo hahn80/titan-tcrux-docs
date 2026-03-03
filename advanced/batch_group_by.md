@@ -108,7 +108,9 @@ Jobs:
       "by": [
         "group"
       ],
-      "num_partitions": 16
+      "num_partitions": 16,
+      "batch_size": 500,
+      "m_batches": 2
     }
   }
 ]
@@ -117,6 +119,7 @@ Jobs:
 Chú ý:
 
 * Tham số `num_partitions: 16` dùng để tách các nhóm thành 16 file nhỏ, nếu số lượng group nhiều thì nên tăng số partitions lên. `num_partitions` là một luỹ thừa của 2. VD: 16, 32, 64, 128,...
+* `m_batches`: The number of batches to process at a time.
 
 * Nếu chỉ tính median thì dùng tham số:
 ```json
