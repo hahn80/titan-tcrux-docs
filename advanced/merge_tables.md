@@ -13,16 +13,19 @@ Jobs:
     "action": "batch_merge",
     "kwargs": {
       "input_files": [
-        "/tmp/tmp31fvdsx7/input_0.arrow",
-        "/tmp/tmp31fvdsx7/input_1.arrow",
-        "/tmp/tmp31fvdsx7/input_2.arrow",
-        "/tmp/tmp31fvdsx7/input_3.arrow",
-        "/tmp/tmp31fvdsx7/input_4.arrow"
+        "/tmp/tmp9nj2vh_y/input_0.arrow",
+        "/tmp/tmp9nj2vh_y/input_1.arrow",
+        "/tmp/tmp9nj2vh_y/input_2.arrow",
+        "/tmp/tmp9nj2vh_y/input_3.arrow",
+        "/tmp/tmp9nj2vh_y/input_4.arrow"
       ],
-      "output_arrow": "/tmp/tmp31fvdsx7/output.arrow",
+      "output_arrow": "/tmp/tmp9nj2vh_y/output.arrow",
       "operations": {
         "batch_size": 400,
-        "num_workers": 4
+        "num_workers": 4,
+        "maintain_order": false,
+        "m_batches": 8,
+        "compression": "zstd"
       }
     }
   }

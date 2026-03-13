@@ -11,18 +11,22 @@ Jobs:
     "task": "batch_processing",
     "action": "batch_filter",
     "kwargs": {
-      "input_arrow": "/tmp/tmp7_kapxos/input.arrow",
-      "output_arrow": "/tmp/tmp7_kapxos/output.arrow",
+      "input_arrow": "/tmp/tmp9umktjnn/input.arrow",
+      "output_arrow": "/tmp/tmp9umktjnn/output.arrow",
       "operations": {
-        "where": "\n    Country NOT IN ('Mexico', 'USA')\n    AND Category == 'Beverages'\n    AND Quantity > 10.0\n    AND Email LIKE '%@example.com'\n    AND Cost IS NULL\n    AND OrderDate BETWEEN DATE('2025-01-01', '%Y-%m-%d') AND DATE('2025-06-30', '%Y-%m-%d')\n    AND EventTime >= DATETIME('2025-05-01 00:30:00', '%Y-%m-%d %H:%M:%S')\n    ",
+        "where": "\n    Country NOT IN ('Mexico', 'USA')\n    AND Category == 'Beverages'\n    AND Quantity > 10.0\n    AND Email ILIKE '%@example.com'\n    AND Cost IS NULL\n    AND OrderDate BETWEEN DATE('2025-01-01', '%Y-%m-%d') AND DATE('2025-06-30', '%Y-%m-%d')\n    AND EventTime >= DATETIME('2025-05-01 00:30:00', '%Y-%m-%d %H:%M:%S')\n    ",
         "batch_size": 250,
-        "m_batches": 8, //number of batches to read at once
-        "num_workers": 4
+        "m_batches": 8,
+        "num_workers": 4,
+        "columns": null,
+        "compression": "zstd"
       }
     }
   }
 ]
 ```
+
+*columns*: null or List of Strings. Null will take all columns.
 
 
 Tham số `where` có kiểu là string tương tự như WHERE trong SQL. Nó hỗ trợ các tính năng sau:

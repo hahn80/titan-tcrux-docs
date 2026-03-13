@@ -23,8 +23,8 @@ Jobs:
     "task": "batch_processing",
     "action": "batch_groupby",
     "kwargs": {
-      "input_arrow": "/tmp/tmp1xbj03wz.arrow",
-      "output_arrow": "/tmp/tmpz4wrlycz.arrow",
+      "input_arrow": "/tmp/tmpipudi3_w.arrow",
+      "output_arrow": "/tmp/tmpyywgpjuu.arrow",
       "operations": {
         "value1": [
           {
@@ -60,7 +60,7 @@ Jobs:
             "alias": "v1_mean"
           },
           {
-            "func": "stddev",
+            "func": "std",
             "alias": "v1_stddev"
           },
           {
@@ -84,33 +84,14 @@ Jobs:
           {
             "func": "last_not_null",
             "alias": "value2_last_not_null"
-          },
-          {
-            "func": "quantile",
-            "alias": "value2_quantile",
-            "args": {
-              "quantiles": [
-                25,
-                50,
-                75
-              ]
-            }
-          },
-          {
-            "func": "quantile",
-            "alias": "value2_median",
-            "args": {
-              "quantiles": 50
-            }
           }
         ]
       },
       "by": [
         "group"
       ],
-      "num_partitions": 16,
       "batch_size": 500,
-      "m_batches": 2
+      "memory_limit_mb": 1024
     }
   }
 ]
@@ -118,10 +99,9 @@ Jobs:
 
 Chú ý:
 
-* Tham số `num_partitions: 16` dùng để tách các nhóm thành 16 file nhỏ, nếu số lượng group nhiều thì nên tăng số partitions lên. `num_partitions` là một luỹ thừa của 2. VD: 16, 32, 64, 128,...
-* `m_batches`: The number of batches to process at a time.
+* Tham số `memory_limit_mb: 1024` memory use for groupby.
 
-* Nếu chỉ tính median thì dùng tham số:
+* Nếu chỉ tính median thì dùng tham số (chua cap nhat):
 ```json
 {
             "func": "quantile",
