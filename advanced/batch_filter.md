@@ -11,18 +11,13 @@ Jobs:
     "task": "batch_processing",
     "action": "batch_filter",
     "kwargs": {
-      "input_arrow": "/tmp/tmp3_bo94qd/input.arrow",
-      "output_arrow": "/tmp/tmp3_bo94qd/output.arrow",
+      "input_arrow": "/resources/filter.arrow",
+      "output_arrow": "/resources/output.arrow",
       "operations": {
-        "where": "\n    Country NOT IN ('Mexico', 'USA')\n    AND Category == 'Beverages'\n    AND Quantity > 10.0\n    AND Email ILIKE '%@example.com'\n    AND Cost IS NULL\n    AND OrderDate BETWEEN DATE('2025-01-01', '%Y-%m-%d') AND DATE('2025-06-30', '%Y-%m-%d')\n    AND EventTime >= DATETIME('2025-05-01 00:30:00', '%Y-%m-%d %H:%M:%S')\n    ",
+        "where": "key == '90'",
         "batch_size": 250,
-        "m_batches": 8,
-        "num_workers": 4,
-        "columns": [
-          "OrderDate",
-          "Country",
-          "Quantity"
-        ],
+        "memory_limit_mb": 300,
+        "columns": null,
         "compression": "zstd"
       }
     }
@@ -30,7 +25,11 @@ Jobs:
 ]
 ```
 
-*columns*: null or List of Strings. Null will take all columns.
+- *input_arrow*: String: input arrow file.
+- *output_arrow*: String: output arrow file.
+- *batch_size*: Int: batch_size for the output.
+- *memory_limit_mb*: Int: max size of memory in MB to process (avoid) OOM.
+- *columns*: null or List[Strings]. Null will take all columns.
 
 
 Tham số `where` có kiểu là string tương tự như WHERE trong SQL. Nó hỗ trợ các tính năng sau:

@@ -3,17 +3,14 @@
 
 Compute the describe stats for the big file.
 
-
-Jobs:
-
 ```json
 [
   {
     "task": "batch_processing",
     "action": "global_stats",
     "kwargs": {
-      "input_arrow": "/tmp/tmp7_qzg6ep/input.arrow",
-      "output_arrow": "/tmp/tmp7_qzg6ep/output.arrow",
+      "input_arrow": "/tmp/tmpk4neue7k/input.arrow",
+      "output_arrow": "/tmp/tmpk4neue7k/output.arrow",
       "operations": {
         "columns": [
           "Quantity",
@@ -22,7 +19,7 @@ Jobs:
         "batch_size": 250,
         "m_batches": 8,
         "quantile_pcts": [
-          35,
+          25,
           50,
           75
         ]
@@ -31,6 +28,17 @@ Jobs:
   }
 ]
 ```
+
+Params:
+
+- *input_arrow*: String: input arrow file
+- *output_arrow*: String: output arrow file
+- *batch_size*: Int: batch_size for the output
+- *m_batches*: Int: number of batches to process at once.
+- *memory_limit_mb*: Int: max size of memory in MB to process (avoid) OOM.
+- *columns*: List[String]: pushdown these column to output.
+- *quantile_pcts*: List[Int]: List of percentile for quantiles.
+- *compression*: String: zstd, lz4
 
 
 Output result:
@@ -45,10 +53,11 @@ Output result:
 | var | 52.00 | 155.56 |
 | std | 7.21 | 12.47 |
 | min | 1.00 | 10.00 |
-| q35 | 9.00 | 20.00 |
+| q25 | 9.00 | 20.00 |
 | q50 | 13.00 | 20.00 |
 | q75 | 19.00 | 40.00 |
 | max | 25.00 | 40.00 |
+
 
 
 

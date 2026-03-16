@@ -1,10 +1,7 @@
 # Advanced Orderby.
 
 
-Batch orderby
-
-
-Jobs:
+Batch orderby:
 
 ```json
 [
@@ -12,8 +9,8 @@ Jobs:
     "task": "batch_processing",
     "action": "batch_orderby",
     "kwargs": {
-      "input_arrow": "/tmp/tmpeq9ivtc9/input.arrow",
-      "output_arrow": "/tmp/tmpeq9ivtc9/output.arrow",
+      "input_arrow": "/tmp/tmpno1oe5y8/input.arrow",
+      "output_arrow": "/tmp/tmpno1oe5y8/output.arrow",
       "operations": {
         "sort_keys": [
           [
@@ -25,39 +22,55 @@ Jobs:
             false
           ]
         ],
+        "columns": [
+          "value",
+          "score"
+        ],
         "batch_size": 32000,
-        "m_batches": 8
+        "memory_limit_mb": 200,
+        "compression": "zstd"
       }
     }
   }
 ]
 ```
 
+Params:
+
+- *input_arrow*: String: input arrow file
+- *output_arrow*: String: output arrow file
+- *batch_size*: Int: batch_size for the output
+- *memory_limit_mb*: Int: max size of memory in MB to process (avoid) OOM.
+- *sort_keys*: The list of pairs (key, order_boolean).
+- *columns*: List[String]: pushdown these column to output.
+- *compression*: String: zstd, lz4
+
 
 Output result:
 
-| id | value | score |
-| --- | --- | --- |
-| 8655 | 1345 | 17310 |
-| 8696 | 1304 | 17392 |
-| 6174 | 3826 | 12348 |
-| 3402 | 6598 | 6804 |
-| 422 | 9578 | 844 |
-| 3274 | 6726 | 6548 |
-| 7592 | 2408 | 15184 |
-| 271 | 9729 | 542 |
-| 3745 | 6255 | 7490 |
-| 9517 | 483 | 19034 |
-| 3132 | 6868 | 6264 |
-| 9908 | 92 | 19816 |
-| 2551 | 7449 | 5102 |
-| 5593 | 4407 | 11186 |
-| 8709 | 1291 | 17418 |
-| 5644 | 4356 | 11288 |
-| 88 | 9912 | 176 |
-| 1844 | 8156 | 3688 |
-| 7841 | 2159 | 15682 |
-| 4320 | 5680 | 8640 |
+| value | score |
+| --- | --- |
+| 8754 | 2492 |
+| 6057 | 7886 |
+| 1768 | 16464 |
+| 1017 | 17966 |
+| 7808 | 4384 |
+| 4772 | 10456 |
+| 996 | 18008 |
+| 5591 | 8818 |
+| 7259 | 5482 |
+| 1494 | 17012 |
+| 4808 | 10384 |
+| 3657 | 12686 |
+| 5694 | 8612 |
+| 2668 | 14664 |
+| 6180 | 7640 |
+| 8755 | 2490 |
+| 886 | 18228 |
+| 7641 | 4718 |
+| 113 | 19774 |
+| 6252 | 7496 |
+
 
 
 

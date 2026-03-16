@@ -3,17 +3,14 @@
 
 Batch selectkby
 
-
-Jobs:
-
 ```json
 [
   {
     "task": "batch_processing",
     "action": "batch_selectkby",
     "kwargs": {
-      "input_arrow": "/tmp/tmpljobkqap/input.arrow",
-      "output_arrow": "/tmp/tmpljobkqap/output.arrow",
+      "input_arrow": "/tmp/tmpxg1tfi90/input.arrow",
+      "output_arrow": "/tmp/tmpxg1tfi90/output.arrow",
       "operations": {
         "sort_keys": [
           [
@@ -23,38 +20,54 @@ Jobs:
         ],
         "k": 100,
         "batch_size": 32000,
-        "m_batches": 8
+        "columns": [
+          "value",
+          "score"
+        ],
+        "memory_limit_mb": 4096,
+        "compression": "zstd"
       }
     }
   }
 ]
 ```
 
+Params:
+
+- *input_arrow*: String: input arrow file
+- *output_arrow*: String: output arrow file
+- *batch_size*: Int: batch_size for the output
+- *sort_keys*: The list of pairs (key, order_boolean).
+- *k*: Int: The number of rows to select.
+- *memory_limit_mb*: Int: max size of memory in MB to process (avoid) OOM.
+- *columns*: List[String]: pushdown these column to output.
+- *compression*: String: zstd, lz4
+
 
 Output result:
 
-| id | value | score |
-| --- | --- | --- |
-| 92 | 9908 | 184 |
-| 21 | 9979 | 42 |
-| 37 | 9963 | 74 |
-| 75 | 9925 | 150 |
-| 61 | 9939 | 122 |
-| 78 | 9922 | 156 |
-| 73 | 9927 | 146 |
-| 65 | 9935 | 130 |
-| 64 | 9936 | 128 |
-| 58 | 9942 | 116 |
-| 87 | 9913 | 174 |
-| 57 | 9943 | 114 |
-| 2 | 9998 | 4 |
-| 67 | 9933 | 134 |
-| 3 | 9997 | 6 |
-| 18 | 9982 | 36 |
-| 98 | 9902 | 196 |
-| 47 | 9953 | 94 |
-| 27 | 9973 | 54 |
-| 74 | 9926 | 148 |
+| value | score |
+| --- | --- |
+| 9996 | 8 |
+| 9982 | 36 |
+| 9991 | 18 |
+| 9960 | 80 |
+| 9959 | 82 |
+| 9951 | 98 |
+| 9929 | 142 |
+| 9972 | 56 |
+| 9911 | 178 |
+| 9916 | 168 |
+| 9967 | 66 |
+| 9971 | 58 |
+| 9990 | 20 |
+| 9900 | 200 |
+| 9963 | 74 |
+| 9984 | 32 |
+| 9919 | 162 |
+| 9913 | 174 |
+| 9978 | 44 |
+| 9976 | 48 |
 
 
 

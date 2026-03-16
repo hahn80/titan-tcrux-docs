@@ -10,44 +10,58 @@ Jobs:
 [
   {
     "task": "batch_processing",
-    "action": "bath_distinct",
+    "action": "batch_distinct",
     "kwargs": {
-      "input_arrow": "/tmp/tmpzcdqrfb0/input.arrow",
-      "output_arrow": "/tmp/tmpzcdqrfb0/output.arrow",
+      "input_arrow": "/tmp/tmpltz0xc1f/input.arrow",
+      "output_arrow": "/tmp/tmpltz0xc1f/output.arrow",
       "operations": {
         "batch_size": 200,
-        "m_batches": 4
+        "memory_limit_mb": 400,
+        "columns": [
+          "category",
+          "value"
+        ],
+        "compression": "zstd"
       }
     }
   }
 ]
 ```
 
+Params:
+
+- *input_arrow*: String: input arrow file
+- *output_arrow*: String: output arrow file
+- *batch_size*: Int: batch_size for the output
+- *memory_limit_mb*: Int: max size of memory in MB to process (avoid) OOM.
+- *columns*: List[String]: pushdown these column to output.
+- *compression*: String: zstd, lz4
+
 
 Output result:
 
-| id | category | value |
-| --- | --- | --- |
-| 1605 | cat_5 | 5 |
-| 2942 | cat_42 | 142 |
-| 316 | cat_16 | 116 |
-| 3615 | cat_15 | 15 |
-| 4785 | cat_85 | 185 |
-| 4867 | cat_67 | 67 |
-| 2871 | cat_71 | 71 |
-| 2079 | cat_79 | 79 |
-| 4558 | cat_58 | 158 |
-| 1900 | cat_0 | 100 |
-| 2539 | cat_39 | 139 |
-| 2227 | cat_27 | 27 |
-| 3516 | cat_16 | 116 |
-| 3992 | cat_92 | 192 |
-| 3572 | cat_72 | 172 |
-| 3297 | cat_97 | 97 |
-| 1549 | cat_49 | 149 |
-| 4479 | cat_79 | 79 |
-| 471 | cat_71 | 71 |
-| 1250 | cat_50 | 50 |
+| category | value |
+| --- | --- |
+| cat_88 | 188 |
+| cat_55 | 155 |
+| cat_9 | 109 |
+| cat_77 | 177 |
+| cat_37 | 137 |
+| cat_21 | 121 |
+| cat_7 | 7 |
+| cat_52 | 152 |
+| cat_11 | 111 |
+| cat_8 | 8 |
+| cat_14 | 114 |
+| cat_84 | 84 |
+| cat_71 | 71 |
+| cat_13 | 13 |
+| cat_97 | 197 |
+| cat_38 | 138 |
+| cat_51 | 151 |
+| cat_30 | 30 |
+| cat_99 | 199 |
+| cat_79 | 79 |
 
 
 
