@@ -23,16 +23,16 @@ Jobs:
     "task": "batch_processing",
     "action": "batch_groupby",
     "kwargs": {
-      "input_arrow": "/tmp/tmpglegw3oe.arrow",
-      "output_arrow": "/tmp/tmpk5osntn7.arrow",
+      "input_arrow": "/tmp/large-g.arrow",
+      "output_arrow": "/tmp/output.arrow",
       "operations": {
         "keys": [
-          "group"
+          "doituongbenhnhanid"
         ],
-        "batch_size": 500,
+        "batch_size": 32768,
         "memory_limit_mb": 1024,
         "aggregates": {
-          "value1": [
+          "tongtien": [
             {
               "func": "sum",
               "alias": "v1_sum"
@@ -67,46 +67,47 @@ Jobs:
             },
             {
               "func": "std",
-              "alias": "v1_stddev"
+              "alias": "v1_std"
             },
             {
               "func": "variance",
-              "alias": "v1_variance"
+              "alias": "v1_var"
             }
           ],
-          "value2": [
+          "duyet_ngayduyet_bh": [
+            {
+              "func": "count_all",
+              "alias": "v2_count_all"
+            },
+            {
+              "func": "count_not_null",
+              "alias": "v2_count_not_null"
+            },
+            {
+              "func": "count_null",
+              "alias": "v2_count_null"
+            },
             {
               "func": "first",
-              "alias": "value2_first"
+              "alias": "v2_first"
             },
             {
               "func": "first_not_null",
-              "alias": "value2_first_not_null"
+              "alias": "v2_first_not_null"
             },
             {
               "func": "last",
-              "alias": "value2_last"
+              "alias": "v2_last"
             },
             {
               "func": "last_not_null",
-              "alias": "value2_last_not_null"
-            },
+              "alias": "v2_last_not_null"
+            }
+          ],
+          "so_phut_kham": [
             {
               "func": "quantile",
-              "alias": "spline_es",
-              "args": {
-                "quantiles": [
-                  0.25,
-                  0.5,
-                  0.75
-                ],
-                "method": "es_hybrid",
-                "abs_err": 0.0001
-              }
-            },
-            {
-              "func": "quantile",
-              "alias": "spline_sp",
+              "alias": "v3",
               "args": {
                 "quantiles": [
                   0.5
@@ -152,7 +153,7 @@ Output result:
 
 
 Support the following functions:
-- sum; max; min; mean; stddev; variance
+- sum; max; min; mean; std; variance
 - count_all; count_not_null; count_null
 - first; first_not_null; last; last_not_null
 - count_distinct
