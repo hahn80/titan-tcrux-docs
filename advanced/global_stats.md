@@ -9,8 +9,8 @@ Compute the describe stats for the big file.
     "task": "batch_processing",
     "action": "global_stats",
     "kwargs": {
-      "input_arrow": "/tmp/tmpa1z81hw7/input.arrow",
-      "output_arrow": "/tmp/tmpa1z81hw7/output.arrow",
+      "input_arrow": "/tmp/tmp3oo6jbjr/input.arrow",
+      "output_arrow": "/tmp/tmp3oo6jbjr/output.arrow",
       "operations": {
         "columns": [
           "Quantity",
@@ -23,7 +23,8 @@ Compute the describe stats for the big file.
           0.25,
           0.5,
           0.75
-        ]
+        ],
+        "with_count_distinct": true
       }
     }
   }
@@ -39,6 +40,7 @@ Params:
 - *memory_limit_mb*: Int: max size of memory in MB to process (avoid) OOM.
 - *columns*: List[String]: pushdown these column to output.
 - *quantile_pcts*: List[float]: List of percentile for quantiles (between 0 and 1).
+- *with_count_distinct*: true/false to add count_distinct to output.
 - *compression*: String: zstd, lz4
 
 
@@ -49,6 +51,7 @@ Output result:
 | count_all | 10000.00 | 10000.00 | 10000.00 |
 | count_null | 0.00 | 0.00 | 4000.00 |
 | count_not_null | 10000.00 | 10000.00 | 6000.00 |
+| count_distinct | 5.00 | 25.00 | 3.00 |
 | sum | nan | 130000.00 | 140000.00 |
 | mean | nan | 13.00 | 23.33 |
 | var | nan | 52.00 | 155.56 |
@@ -58,6 +61,7 @@ Output result:
 | q50 | nan | nan | 20.00 |
 | q75 | nan | nan | 40.00 |
 | max | nan | 25.00 | 40.00 |
+
 
 
 
