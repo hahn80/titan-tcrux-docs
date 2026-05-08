@@ -46,21 +46,11 @@ Params:
 
 Output result:
 
-| metric | Quantity | Cost | Country |
-| --- | --- | --- | --- |
-| count_all | 10000.00 | 10000.00 | 10000.00 |
-| count_null | 0.00 | 0.00 | 4000.00 |
-| count_not_null | 10000.00 | 10000.00 | 6000.00 |
-| count_distinct | 5.00 | 25.00 | 3.00 |
-| sum | nan | 130000.00 | 140000.00 |
-| mean | nan | 13.00 | 23.33 |
-| var | nan | 52.00 | 155.56 |
-| std | nan | 7.21 | 12.47 |
-| min | nan | 1.00 | 10.00 |
-| q25 | nan | nan | 10.00 |
-| q50 | nan | nan | 20.00 |
-| q75 | nan | nan | 40.00 |
-| max | nan | 25.00 | 40.00 |
+| column_name | count_all | count_null | count_not_null | count_distinct | sum | mean | var | std | min | q25 | q50 | q75 | max |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Quantity | 10000 | 0 | 10000 | 25 | 130000.00 | 13.00 | 52.00 | 7.21 | 1.00 | 7.00 | 13.00 | 19.00 | 25.00 |
+| Cost | 10000 | 4000 | 6000 | 3 | 140000.00 | 23.33 | 155.56 | 12.47 | 10.00 | 10.00 | 20.00 | 40.00 | 40.00 |
+| Country | 10000 | 0 | 10000 | 5 | nan | nan | nan | nan | None | nan | nan | nan | None |
 
 
 
