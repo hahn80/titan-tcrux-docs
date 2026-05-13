@@ -9,8 +9,8 @@ Compute the describe stats for the big file.
     "task": "batch_processing",
     "action": "global_stats",
     "kwargs": {
-      "input_arrow": "/tmp/tmp3oo6jbjr/input.arrow",
-      "output_arrow": "/tmp/tmp3oo6jbjr/output.arrow",
+      "input_arrow": "/tmp/tmpjls0hikp/input.arrow",
+      "output_arrow": "/tmp/tmpjls0hikp/output.arrow",
       "operations": {
         "columns": [
           "Quantity",
@@ -19,7 +19,7 @@ Compute the describe stats for the big file.
         ],
         "batch_size": 250,
         "m_batches": 8,
-        "quantile_pcts": [
+        "quantiles": [
           0.25,
           0.5,
           0.75
@@ -39,7 +39,7 @@ Params:
 - *m_batches*: Int: number of batches to process at once.
 - *memory_limit_mb*: Int: max size of memory in MB to process (avoid) OOM.
 - *columns*: List[String]: pushdown these column to output.
-- *quantile_pcts*: List[float]: List of percentile for quantiles (between 0 and 1).
+- *quantiles*: List[float]: List of quantiles (between 0 and 1).
 - *with_count_distinct*: true/false to add count_distinct to output.
 - *compression*: String: zstd, lz4
 
