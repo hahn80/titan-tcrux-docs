@@ -68,6 +68,69 @@ Output result:
 
 
 
+## Z-Score Method
+
+```json
+[
+  {
+    "task": "batch_processing",
+    "action": "global_std_outlier",
+    "kwargs": {
+      "input_arrow": "/tmp/tmp8_1_bxyj/input.arrow",
+      "output_arrow": "/tmp/tmp8_1_bxyj/output.arrow",
+      "operations": {
+        "columns": [
+          "x1",
+          "x2",
+          "x3"
+        ],
+        "batch_size": 100,
+        "m_batches": 8,
+        "threshold": 2.0,
+        "compression": "zstd",
+        "filter_strategy": null
+      }
+    }
+  }
+]
+```
+
+Params:
+
+- *input_arrow*: String: input arrow file
+- *output_arrow*: String: output arrow file
+- *batch_size*: Int: batch_size for the output
+- *m_batches*: Int: number of batches to process at once.
+- *threshold*: Float: the z score threshold value from 3 to 3 (default = 2.0)
+- *compression*: String: zstd, lz4
+- *filter_strategy*: String: `null`, `AND`, `OR` (If `null`: return all rows, if `AND`: return all outlier rows from which all columns are trues, if `OR`: return all outlier rows for which of the columns is true)
+
+
+Output result:
+
+| x1 | x1_outlier | x2 | x2_outlier | x3 | x3_outlier |
+| --- | --- | --- | --- | --- | --- |
+| 94 | False | -0.53 | False | 3.23 | False |
+| 27 | False | 1.63 | False | 2.73 | False |
+| 92 | False | -1.07 | False | 1.81 | False |
+| 88 | False | -0.86 | False | 6.65 | False |
+| 83 | False | -0.08 | False | 0.02 | False |
+| 43 | False | 1.16 | False | 1.22 | False |
+| 5 | False | 0.41 | False | 0.28 | False |
+| 12 | False | -1.34 | False | 1.93 | False |
+| 98 | False | 0.03 | False | 4.25 | False |
+| 79 | False | 0.56 | False | 1.97 | False |
+| 19 | False | 1.25 | False | 2.04 | False |
+| 9 | False | -0.92 | False | 1.18 | False |
+| 13 | False | 0.18 | False | 2.41 | False |
+| 4 | False | -0.32 | False | 3.50 | False |
+| 79 | False | 1.19 | False | 2.41 | False |
+| 43 | False | -0.44 | False | 4.98 | False |
+| 59 | False | -0.41 | False | 5.55 | False |
+| 72 | False | 0.37 | False | 1.34 | False |
+| 24 | False | 0.66 | False | 1.30 | False |
+| 74 | False | 1.91 | False | 1.32 | False |
+
 
 
 
