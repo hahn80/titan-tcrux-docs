@@ -37,9 +37,14 @@ Params:
 
 Output result:
 
-| a | b |
-| --- | --- |
-| 0.05 | 0.04 |
+| a_rval | a_tval | a_pval | b_rval | b_tval | b_pval |
+| --- | --- | --- | --- | --- | --- |
+| 0.05 | 1.15 | 0.25 | 0.04 | 0.90 | 0.37 |
+
+
+- *rval*: the correlation value
+- *tval*: statistic value for correlation test
+- *pval*: p-value for correlation test.
 
 
 

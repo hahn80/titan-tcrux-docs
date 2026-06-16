@@ -244,6 +244,76 @@ With `inclusive=False`:
 **Supported column types:** int8, int16, int32, int64, uint8, uint16, uint32, uint64, float32, float64.
 
 
+## Standardize or Z-Score
+
+```
+standardize(col3, mu, sigma) as col3_zscore
+```
+
+mu and sigma values can compute from `global_stats`.
+- *mu*: is the mean of col3,
+- *sigma*: std of col3.
+
+## Normalize (Min/Max Normalization)
+
+```
+normalize(col1, min_value, max_value) as col1_minmax_scale 
+```
+
+min and max values can compute from `global_stats`.
+- *min*: is the min of col1,
+- *max*: max of col1.
+
+
+For example:
+
+```json
+[
+  {
+    "task": "batch_processing",
+    "action": "batch_query",
+    "kwargs": {
+      "input_arrow": "/tmp/tmpzqqfrn_w/input.arrow",
+      "output_arrow": "/tmp/tmpzqqfrn_w/output.arrow",
+      "operations": {
+        "query": "\n        SELECT *\n        FROM Dummy\n        TRANSFORM\n        standardize(col3, 0, 1) as col3_zscore,\n        cut(col2, 90, \"high\", 70, \"medium\", 50, \"low\", \"bad\", True) as col2_level,\n        normalize(col1, 2, 10) as col1_minmax_scale \n        ",
+        "batch_size": 250,
+        "memory_limit_mb": 300,
+        "compression": "zstd"
+      }
+    }
+  }
+]
+```
+
+Output result:
+
+| col1 | col2 | col3 | col3_zscore | col2_level | col1_minmax_scale |
+| --- | --- | --- | --- | --- | --- |
+| 0.78 | 42 | 0.81 | 0.81 | bad | -0.15 |
+| 0.25 | 29 | 0.12 | 0.12 | bad | -0.22 |
+| 0.05 | 76 | 0.81 | 0.81 | medium | -0.24 |
+| 0.48 | 17 | 0.31 | 0.31 | bad | -0.19 |
+| 0.35 | 14 | 0.91 | 0.91 | bad | -0.21 |
+| 0.53 | 7 | 0.65 | 0.65 | bad | -0.18 |
+| 0.94 | 73 | 0.22 | 0.22 | medium | -0.13 |
+| 0.93 | 23 | 0.54 | 0.54 | bad | -0.13 |
+| 0.20 | 34 | 0.82 | 0.82 | bad | -0.23 |
+| 0.97 | 68 | 0.38 | 0.38 | low | -0.13 |
+| 0.92 | 97 | 0.12 | 0.12 | high | -0.14 |
+| 0.08 | 67 | 0.74 | 0.74 | low | -0.24 |
+| 0.79 | 97 | 0.31 | 0.31 | high | -0.15 |
+| 0.21 | 59 | 0.21 | 0.21 | low | -0.22 |
+| 0.92 | 30 | 0.66 | 0.66 | bad | -0.14 |
+| 0.37 | 46 | 0.28 | 0.28 | bad | -0.20 |
+| 0.11 | 33 | 0.11 | 0.11 | bad | -0.24 |
+| 0.21 | 75 | 0.78 | 0.78 | medium | -0.22 |
+| 0.70 | 39 | 0.97 | 0.97 | bad | -0.16 |
+| 0.97 | 20 | 0.60 | 0.60 | bad | -0.13 |
+
+
+
+
 ## One crazy example:
 
 ```SQL

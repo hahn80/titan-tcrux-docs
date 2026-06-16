@@ -9,8 +9,8 @@
     "task": "batch_processing",
     "action": "batch_pearson_corr_groupby",
     "kwargs": {
-      "input_arrow": "/data/TitanProjects/tcrux/src/tests/resources/large_g.arrow",
-      "output_arrow": "/tmp/tmpafn5qvtd/output",
+      "input_arrow": "/tmp/tests/resources/large_g.arrow",
+      "output_arrow": "/tmp/tmpb05pv0q0/output",
       "operations": {
         "keys": [
           "doituongbenhnhanid"
@@ -41,12 +41,12 @@ Params:
 
 Output result:
 
-| doituongbenhnhanid | tongtien | so_phut_kham |
-| --- | --- | --- |
-| 2 | 1.00 | -0.01 |
-| 3 | 1.00 | -0.02 |
-| 1 | 1.00 | -0.00 |
-| 5 | 1.00 | -0.12 |
+| doituongbenhnhanid | tongtien_rval | tongtien_tval | tongtien_pval | so_phut_kham_rval | so_phut_kham_tval | so_phut_kham_pval |
+| --- | --- | --- | --- | --- | --- | --- |
+| 2 | 1.00 | 35538785039.71 | 0.00 | -0.01 | -8.85 | 0.00 |
+| 3 | 1.00 | inf | nan | -0.02 | -10.33 | 0.00 |
+| 1 | 1.00 | 72622465768.70 | 0.00 | -0.00 | -4.48 | 0.00 |
+| 5 | 1.00 | inf | nan | -0.12 | -21.50 | 0.00 |
 
 
 
