@@ -2,7 +2,7 @@
 
 We integrate 4-bit quantized method from Google to approximatedly search the similarity of the vectors.
 
-## Create the index.
+## Create the index (RAW).
 
 
 Jobs to call `tcrux_multi_tasking`:
@@ -13,8 +13,8 @@ Jobs to call `tcrux_multi_tasking`:
     "task": "querying",
     "action": "batch_index_create",
     "kwargs": {
-      "input_arrow": "/tmp/tests/resources/fake_vectors.arrow",
-      "index_path": "/tmp/tmprthphl4q/index",
+      "input_arrow": "hdfs://172.30.0.2:9000/tmp/tmp5tdoiobx/input.arrow?user=root",
+      "index_path": "hdfs://172.30.0.2:9000/tmp/tmp5tdoiobx/raw_index?user=root",
       "operations": {
         "bit_width": 4,
         "batch_size": 32000,
@@ -23,18 +23,40 @@ Jobs to call `tcrux_multi_tasking`:
     }
   }
 ]
-
 ```
+
+The input arrow must have the schema: key and vector.
 
 Params:
 
-- *input_arrow*: String: the input arrow file
-- *index_path*: String: path to index folder (create this path before calling)
+- *input_arrow*: String: the input arrow file or hdfs
+- *index_path*: String: path to index folder or hdfs
 - *bit_width*: Int: bit size for quantization (4 or 2).
 - *length*: Int: How many rows to take.
 - *batch_size*: Int: batch_size for the index writer.
 - *max_rows_per_file*: Int: The max number or rows for each index file. The index can have multiple files.
 
+
+## Build the search index
+
+Once we created the (raw) index, we have to build the index before searching.
+
+```json
+[
+  {
+    "task": "querying",
+    "action": "batch_index_build",
+    "kwargs": {
+      "index_path": "hdfs://172.30.0.2:9000/tmp/tmp5tdoiobx/raw_index?user=root",
+      "local_path": "/tmp/tmp5tdoiobx/index",
+      "operations": {}
+    }
+  }
+]
+```
+
+- *index_path*: String, path to raw index (could be on hdfs)
+- *local_path*: String, path to local built index (must be local, not hdfs)
 
 
 ## Similarity Search
