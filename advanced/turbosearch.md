@@ -13,12 +13,13 @@ Jobs to call `tcrux_multi_tasking`:
     "task": "querying",
     "action": "batch_index_create",
     "kwargs": {
-      "input_arrow": "hdfs://172.30.0.2:9000/tmp/tmp5tdoiobx/input.arrow?user=root",
-      "index_path": "hdfs://172.30.0.2:9000/tmp/tmp5tdoiobx/raw_index?user=root",
+      "input_arrow": "hdfs://172.30.0.2:9000/tmp/tmpsgsz41lx/input.arrow?user=root",
+      "index_path": "hdfs://172.30.0.2:9000/tmp/tmpsgsz41lx/raw_index?user=root",
       "operations": {
         "bit_width": 4,
         "batch_size": 32000,
-        "max_rows_per_file": 640000
+        "key_column": "doc_id",
+        "vector_column": "embedding"
       }
     }
   }
@@ -34,10 +35,11 @@ Params:
 - *bit_width*: Int: bit size for quantization (4 or 2).
 - *length*: Int: How many rows to take.
 - *batch_size*: Int: batch_size for the index writer.
-- *max_rows_per_file*: Int: The max number or rows for each index file. The index can have multiple files.
+- *key_column*: String: name of key column.
+- *vector_column*: String: name of vector column.
 
 
-## Build the search index
+## Build the local search index
 
 Once we created the (raw) index, we have to build the index before searching.
 
@@ -47,9 +49,12 @@ Once we created the (raw) index, we have to build the index before searching.
     "task": "querying",
     "action": "batch_index_build",
     "kwargs": {
-      "index_path": "hdfs://172.30.0.2:9000/tmp/tmp5tdoiobx/raw_index?user=root",
-      "local_path": "/tmp/tmp5tdoiobx/index",
-      "operations": {}
+      "index_path": "hdfs://172.30.0.2:9000/tmp/tmpsgsz41lx/raw_index?user=root",
+      "local_path": "/tmp/tmpsgsz41lx/index",
+      "operations": {
+        "key_column": "doc_id",
+        "vector_column": "embedding"
+      }
     }
   }
 ]
@@ -69,9 +74,12 @@ Once we created the index, we can search it.
     "task": "querying",
     "action": "batch_index_search",
     "kwargs": {
-      "index_path": "/tmp/tmprthphl4q/index",
-      "query": arrow.RecordBatch or Table,
-	  "operations": {}
+      "index_path": "/tmp/tmpsgsz41lx/index",
+      "__arrow__": "query",
+      "operations": {
+        "k": 10,
+        "min_score": 0.1
+      }
     }
   }
 ]
@@ -99,7 +107,7 @@ List<Object> jobs = ListBuilder.create(l ->
 		.kwargs(kw -> {
 			kw.put("index_path", indexPath);
 			kw.put("__arrow__", "query");
-			kw.put("operations", MapBuilder.create(ops -> {}).build());
+			kw.put("operations", MapBuilder.create(ops -> {"k": 10, "min_score": 0.1}).build());
 		})
 		.build())
 ).build();
@@ -113,6 +121,6 @@ Notice:
 - *ipc* data will be sent to Python from Java
 - *index_path*: String: Path to the turbo index
 - `__arrow__` = `query`. This is the main idea, it tells Python to receives ipc data and set `query` = ipc data once it obtained.
-- `operations`: Just empty Hashmap for now.
+- `operations`: contains *k* (int) and *min_score* (float). The *k* is required, but min_score is optional, can be null. 
 
 
