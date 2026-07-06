@@ -33,8 +33,8 @@ Compute the describe stats for the big file.
 
 Params:
 
-- *input_arrow*: String: input arrow file
-- *output_arrow*: String: output arrow file
+- *input_arrow*: String: input arrow file (can be hdfs)
+- *output_arrow*: String: output arrow file (can be hdfs)
 - *batch_size*: Int: batch_size for the output
 - *m_batches*: Int: number of batches to process at once.
 - *memory_limit_mb*: Int: max size of memory in MB to process (avoid) OOM.
