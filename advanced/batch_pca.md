@@ -87,7 +87,7 @@ Once we trained the model and save it to `/tmp/tmpi3nbf9r1/pca_model.arrow`, the
 ]
 ```
 
-- *query*: In TRANSFORM PCA function, we use the following syntax: `PCA(col1, ..., colN, k, PC1, ..., PCk)`. It means that we have $$N$$ input columns `col1` to `colN`, $$k$$ is the number of components and `PC1` to `PCk` are the name for output columns.
+- *query*: In TRANSFORM PCA function, we use the following syntax: `PCA(col1, ..., colN, path_to_trained_model, k, PC1, ..., PCk)`. It means that we have $$N$$ input columns `col1` to `colN`, $$k$$ is the number of components and `PC1` to `PCk` are the name for output columns.
 
 Output result (truncated):
 
