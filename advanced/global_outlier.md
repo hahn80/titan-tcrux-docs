@@ -17,6 +17,7 @@
           "x2",
           "x3"
         ],
+        "extra_columns": null,
         "batch_size": 100,
         "m_batches": 8,
         "whisker": 1.5,
@@ -33,6 +34,7 @@ Params:
 
 - *input_arrow*: String: input arrow file
 - *output_arrow*: String: output arrow file
+- *extra_columns*: Optional, can be removed, null, or list of Strings.
 - *batch_size*: Int: batch_size for the output
 - *m_batches*: Int: number of batches to process at once.
 - *whisker*: Float: the whiser value from 1 to 3 (default = 1.5)
@@ -84,6 +86,7 @@ Output result:
           "x2",
           "x3"
         ],
+        "extra_columns": null,
         "batch_size": 100,
         "m_batches": 8,
         "threshold": 2.0,
@@ -99,6 +102,7 @@ Params:
 
 - *input_arrow*: String: input arrow file
 - *output_arrow*: String: output arrow file
+- *extra_columns*: Optional, can be removed, null, or list of Strings.
 - *batch_size*: Int: batch_size for the output
 - *m_batches*: Int: number of batches to process at once.
 - *threshold*: Float: the z score threshold value from 3 to 3 (default = 2.0)

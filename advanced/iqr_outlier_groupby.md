@@ -22,6 +22,7 @@ Jobs:
           "tongtien",
           "so_phut_kham"
         ],
+        "extra_columns": null,
         "batch_size": 3200,
         "whisker": 1.5,
         "abs_err": 0.0001,
@@ -40,6 +41,7 @@ Chú ý:
 
 - *input_arrow*: String: input arrow file
 - *output_arrow*: String: output arrow file
+- *extra_columns*: Optional, can be removed, null, or list of Strings.
 - *keys*: List[String]: groupby keys.
 - *columns*: List of Strings.
 - *batch_size*: Int: batch_size for the output
