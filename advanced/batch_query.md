@@ -193,6 +193,28 @@ Casts a column to the specified Arrow type. Uses safe casting (raises on overflo
 | `"utf8"` or `"string"` | UTF-8 string |
 | `"boolean"` or `"bool"` | boolean |
 
+
+**Cast DECIMAL Types**
+
+To cast the decimal types, we use one of the following form: `cast(col, "DECIMALxx", precision, scale)`.
+For example:
+```SQL
+SELECT * EXCLUDE col1, col2, col3
+    FROM Dummy
+    TRANSFORM
+    cast(col1, "DECIMAL32", 5, 3) as col1_dec32,
+    cast(col1, "DECIMAL64", 5, 3) as col1_dec64,
+    cast(col1, "DECIMAL128", 5, 3) as col1_dec128,
+    cast(col1, "DECIMAL256", 5, 3) as col1_dec256,
+    cast(col2, "DECIMAL64", 12, 2) as col2_dec64,
+    cast(col2, "DECIMAL128", 12, 2) as col2_dec128,
+    cast(col2, "DECIMAL256", 12, 2) as col2_dec256,
+    cast(col3, "DECIMAL32", 5, 1) as col3_dec32,
+    cast(col3, "DECIMAL128", 5, 1) as col3_dec128
+  ```
+
+  Notice: int32 -> decimal requires precision >= 10 + scale, even if the input column has small int32 values.
+
 **Example:**
 ```python
 cast(col2, "float64")   # convert int column to float64
