@@ -11,10 +11,10 @@ Jobs:
     "task": "batch_processing",
     "action": "batch_query",
     "kwargs": {
-      "input_arrow": "/tmp/tmpss95qm56/input.arrow",
-      "output_arrow": "/tmp/tmpss95qm56/output.arrow",
+      "input_arrow": "/tmp/tmp7na3g_4h/input.arrow",
+      "output_arrow": "/tmp/tmp7na3g_4h/output.arrow",
       "operations": {
-        "query": "SELECT * EXCLUDE col1, col2\n FROM Dummy\n        TRANSFORM\n rename(col1) as new_col1,\n rename(col2) as new_col2,\n cast(col3, \"string\") as new_col3,\n ADD_COLUMN(10, \"int64\") as col4",
+        "query": "\n        SELECT * EXCLUDE col1, col2\n        FROM Dummy\n        TRANSFORM\n        rename(col1) as new_col1,\n        rename(col2) as new_col2,\n        cast(col3, \"string\") as new_col3,\n        ADD_COLUMN(10, \"int64\") as col4,\n        ADD_COLUMN('2026/01/01', \"DATE\", \"%Y/%m/%d\") as col9,\n        ADD_COLUMN('2025-10-20 12:00:00', \"DATETIME\", \"%Y-%m-%d %H:%M:%S\", \"ms\") as col10,\n        ADD_COLUMN('23:59:59', \"TIME\", \"%H:%M:%S\", \"ms\") as col11,\n        ADD_COLUMN(5520, \"DURATION\", \"ms\") as col12,\n        ADD_COLUMN(\"100.00\", \"DECIMAL32\", 5, 2) as col5,\n        ADD_COLUMN(\"100.00\", \"DECIMAL64\", 5, 2) as col6,\n        ADD_COLUMN(\"100.00\", \"DECIMAL128\", 5, 2) as col7,\n        ADD_COLUMN(\"100.00\", \"DECIMAL256\", 5, 2) as col8\n        ",
         "batch_size": 250,
         "memory_limit_mb": 300,
         "compression": "zstd"
@@ -51,3 +51,11 @@ cast(col2, "float64")
 cast(col1, "string")
 ```
 
+## Temporal Data types
+
+We support the following types:
+
+- Date: `ADD_COLUMN(value, "DATE", format)` and the value is NULL or string. For example: ADD_COLUMN('2026/01/01', "DATE", "%Y/%m/%d") as col9
+- Datetime: `ADD_COLUMN(value, "DATETIME", format, unit)` and the value is NULL or string, format is string, unit is string of the form "ms", "us", "ns". For example: ADD_COLUMN('2025-10-20 12:00:00', "DATETIME", "%Y-%m-%d %H:%M:%S", "ms") as col10
+- Time: `ADD_COLUMN(value, "TIME", format, unit)`. For example: ADD_COLUMN('23:59:59', "TIME", "%H:%M:%S", "ms") as col11
+- Duration: ADD_COLUMN(5520, "DURATION", "ms") as col12, where the value is INT.
