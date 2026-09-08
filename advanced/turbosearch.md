@@ -50,7 +50,7 @@ Once we created the (raw) index, we have to build the index before searching.
     "action": "batch_index_build",
     "kwargs": {
       "index_path": "hdfs://172.30.0.2:9000/tmp/tmpsgsz41lx/raw_index?user=root",
-      "local_path": "/tmp/tmpsgsz41lx/index",
+      "local_path": "hdfs://172.30.0.2:9000/tmp/tmpt0_kwyix/index?user=root",
       "operations": {
         "key_column": "doc_id",
         "vector_column": "embedding"
@@ -61,7 +61,7 @@ Once we created the (raw) index, we have to build the index before searching.
 ```
 
 - *index_path*: String, path to raw index (could be on hdfs)
-- *local_path*: String, path to local built index (must be local, not hdfs)
+- *local_path*: String, path to local built index (must be local or hdfs).
 
 
 ## Similarity Search
@@ -74,7 +74,7 @@ Once we created the index, we can search it.
     "task": "querying",
     "action": "batch_index_search",
     "kwargs": {
-      "index_path": "/tmp/tmpsgsz41lx/index",
+      "index_path": "hdfs://172.30.0.2:9000/tmp/tmpt0_kwyix/index?user=root",
       "__arrow__": "query",
       "operations": {
         "k": 10,
@@ -90,6 +90,7 @@ Now, we will talk about how to pass arrow RecordBatch or Table to *query* from J
 ```java
 private static final int N_QUERIES = 10;
 private static final int DIM = 1024;
+String indexPath = "hdfs://172.30.0.2:9000/tmp/tmpt0_kwyix/index?user=root";
 byte[] ipc;
 try (ByteArrayOutputStream out = new ByteArrayOutputStream();
 	 ArrowStreamWriter writer =
@@ -119,7 +120,7 @@ Map<String, Object> result = peer.sendArrow("tcrux.execute",
 Notice:
 
 - *ipc* data will be sent to Python from Java
-- *index_path*: String: Path to the turbo index
+- *index_path*: String: Path to the turbo index (local or hdfs)
 - `__arrow__` = `query`. This is the main idea, it tells Python to receives ipc data and set `query` = ipc data once it obtained.
 - `operations`: contains *k* (int) and *min_score* (float). The *k* is required, but min_score is optional, can be null. 
 
