@@ -79,7 +79,8 @@ Once we created the index, we can search it.
       "operations": {
         "k": 10,
         "min_score": 0.1
-      }
+      },
+      "output_arrow": "hdfs://172.30.0.2:9000/tmp/tmptgm69v6g/output.arrow?user=root",
     }
   }
 ]
@@ -122,6 +123,7 @@ Notice:
 - *ipc* data will be sent to Python from Java
 - *index_path*: String: Path to the turbo index (local or hdfs)
 - `__arrow__` = `query`. This is the main idea, it tells Python to receives ipc data and set `query` = ipc data once it obtained.
-- `operations`: contains *k* (int) and *min_score* (float). The *k* is required, but min_score is optional, can be null. 
+- `operations`: contains *k* (int) and *min_score* (float). The *k* is required, but min_score is optional, can be null.
+- `output_arrow`: String (Optional); the output string for local path or hdfs.
 
 
